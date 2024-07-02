@@ -1,22 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../../../../core/services/lesson_providor.dart';
 
 class LessonScreen extends StatelessWidget {
-  const LessonScreen({super.key});
+
+  final int lessonIndex;
+  const LessonScreen({super.key, required this.lessonIndex});
 
   @override
   Widget build(BuildContext context) {
+     var lessonProvider = Provider.of<LessonProvider>(context);
+    var lesson = lessonProvider.lessons[lessonIndex];
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Lesson'),
+        title: Text(lesson.title),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              'Lesson Content',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+             Text(
+              lesson.content,
+              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 10),
             Container(
@@ -28,9 +35,19 @@ class LessonScreen extends StatelessWidget {
             ),
             const Spacer(),
             ElevatedButton(
-              onPressed: () {
-                // Navigate to next lesson or perform action
-              },
+             
+              onPressed: lessonIndex < lessonProvider.lessons.length - 1
+                  ? () {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => LessonScreen(
+                            lessonIndex: lessonIndex + 1,
+                          ),
+                        ),
+                      );
+                    }
+                  : null,
               child: const Text('Next Lesson'),
             ),
           ],
