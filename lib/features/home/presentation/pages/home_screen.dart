@@ -4,6 +4,7 @@ import '../../widgets/progress_tracker_widget.dart';
 import '../../widgets/bottom_nav_bar.dart'; 
 import 'package:provider/provider.dart';
 import '../../../../core/services/lesson_providor.dart';
+import 'flashcard_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -25,6 +26,16 @@ class HomeScreen extends StatelessWidget {
             const SizedBox(height: 20),
             const ProgressTrackerWidget(),
             const Spacer(),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: ElevatedButton.icon(
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => const FlashcardScreen()));
+                }, 
+                icon: const Icon(Icons.flash_on),
+                label: const Text('flashcards'),
+              )
+            ),
             const BottomNavBar(),
           ],
         ),
