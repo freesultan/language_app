@@ -33,7 +33,7 @@ class BottomNavBar extends StatelessWidget {
             break;
           case 1:
             Navigator.push(context, 
-            MaterialPageRoute(builder: (context) => const LessonScreen())
+            MaterialPageRoute(builder: (context) => const LessonScreen(lessonIndex: 0))
             );
             break;
           case 2:
