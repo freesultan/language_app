@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:language_app/features/home/presentation/pages/flashcard_screen.dart';
 import 'package:language_app/features/home/presentation/pages/home_screen.dart';
 import 'package:language_app/features/home/presentation/pages/lesson_screen.dart';
 import 'package:language_app/features/home/presentation/pages/profile_screen.dart';
@@ -18,9 +19,9 @@ class BottomNavBar extends StatelessWidget {
           icon: Icon(Icons.school),
           label: 'Lessons',
         ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.person),
-          label: 'Profile',
+         BottomNavigationBarItem(
+          icon: Icon(Icons.dataset),
+          label: 'Flashcards',
         ),
       ],
       onTap: (index) {
@@ -36,10 +37,10 @@ class BottomNavBar extends StatelessWidget {
             MaterialPageRoute(builder: (context) => const LessonScreen(lessonIndex: 0))
             );
             break;
-          case 2:
+         case 2:
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const ProfileScreen())
+              MaterialPageRoute(builder: (context) => const FlashcardScreen())
               );
             break;
         }

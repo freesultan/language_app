@@ -9,7 +9,7 @@ class FlashcardScreen extends StatefulWidget {
 
 class _FlashcardScreenState extends State<FlashcardScreen> {
   List<Map<String, String>> flashcards = [
-    {"question": "Hello", "answer": "سلام"},
+    {"question": "payper", "answer": "کاغذ"},
     {"question": "Thank you", "answer": "تشکر"},
     // Add more flashcards here
   ];

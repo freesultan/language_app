@@ -26,16 +26,6 @@ class HomeScreen extends StatelessWidget {
             const SizedBox(height: 20),
             const ProgressTrackerWidget(),
             const Spacer(),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: ElevatedButton.icon(
-                onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => const FlashcardScreen()));
-                }, 
-                icon: const Icon(Icons.flash_on),
-                label: const Text('flashcards'),
-              )
-            ),
             const BottomNavBar(),
           ],
         ),
