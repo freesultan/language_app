@@ -1,0 +1,34 @@
+# Flutter/Dart/Pub related
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+build/
+
+# Omitted because already added to .gitignore by Flutter template.
+# android/app/key.properties
+
+# Android related
+local.properties
+.gradle/
+*/gradle.properties
+*.jks
+
+# iOS related
+**/Pods/
+**/.symlinks/
+**/Flutter/Flutter.framework
+**/Flutter/Flutter.podspec
+**/.ios/
+.build/
+
+# Xcode specific
+xcuserdata/
+DerivedData/
+*.pbxuser
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+
+# Add more custom rules below as needed
