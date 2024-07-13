@@ -20,26 +20,7 @@ class HomeScreen extends StatelessWidget {
     final currentUser = authService.currentUser;
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Home'),
-        actions: [
-          if (currentUser != null)
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Center(child: Text('Hello, ${currentUser.username}')),
-            ),
-          IconButton(
-            icon: const Icon(Icons.logout),
-            onPressed: () {
-              authService.logout();
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => LoginScreen()),
-              );
-            },
-          ),
-        ],
-      ),
+      appBar: _buildAppBar(context),
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
@@ -91,3 +72,48 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
+
+PreferredSizeWidget? _buildAppBar(BuildContext context) {
+    final authService = Provider.of<AuthService>(context);
+
+    if (authService.currentUser != null) {
+      return AppBar(
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text('Hello, ${authService.currentUser!.username}'),
+            IconButton(
+              icon: Icon(Icons.logout),
+              onPressed: () {
+                authService.logout();
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => HomeScreen()),
+                );
+              },
+            ),
+          ],
+        ),
+        backgroundColor: Colors.lightBlue[300],
+        elevation: 10,
+        flexibleSpace: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [Colors.blueAccent, Colors.lightBlue, Colors.lightBlueAccent],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.5),
+                spreadRadius: 2,
+                blurRadius: 8,
+                offset: Offset(2, 4),
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+    return null;
+  }
