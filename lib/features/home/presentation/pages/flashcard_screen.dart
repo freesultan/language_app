@@ -4,8 +4,9 @@ import 'package:provider/provider.dart';
 import 'package:language_app/core/services/auth_service.dart';
 import '../../widgets/add_flashcard_widget.dart';
 import '../../widgets/create_deck_widget.dart';
-import 'package:language_app/features/home/presentation/pages/flashcard_detail_screen.dart';
+// import 'package:language_app/features/home/presentation/pages/flashcard_detail_screen.dart';
 import 'package:badges/badges.dart' as badge;
+import 'package:flip_card/flip_card.dart';
 
 class FlashcardScreen extends StatefulWidget {
   @override
@@ -15,6 +16,7 @@ class FlashcardScreen extends StatefulWidget {
 class _FlashcardScreenState extends State<FlashcardScreen> {
   late AuthService authService;
   String? selectedDeck;
+  int currentIndex = 0;
 
   @override
   void initState() {
@@ -32,6 +34,13 @@ class _FlashcardScreenState extends State<FlashcardScreen> {
     setState(() {}); // Rebuild the widget to reflect the new flashcard
   }
 
+  void _nextFlashcard() {
+    setState(() {
+      currentIndex =
+          (currentIndex + 1) % authService.getUserDecks()[selectedDeck]!.length;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final decks = authService.getUserDecks();
@@ -44,6 +53,7 @@ class _FlashcardScreenState extends State<FlashcardScreen> {
                 onPressed: () {
                   setState(() {
                     selectedDeck = null;
+                    currentIndex = 0;
                   });
                 },
               ),
@@ -133,40 +143,95 @@ class _FlashcardScreenState extends State<FlashcardScreen> {
                     Expanded(
                       child: decks[selectedDeck]!.isEmpty
                           ? Center(child: Text('No flashcards available.'))
-                          : ListView.builder(
-                              itemCount: decks[selectedDeck]!.length,
-                              itemBuilder: (context, index) {
-                                var flashcard = decks[selectedDeck]![index];
-                                return Card(
-                                  color: Colors.blueAccent,
-                                  margin: EdgeInsets.symmetric(vertical: 10),
+                          : Center(
+                              child: FlipCard(
+                                front: Card(
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(15),
                                   ),
-                                  elevation: 5,
+                                  elevation: 8,
                                   shadowColor: Colors.black54,
-                                  child: ListTile(
-                                    title: Text(
-                                      flashcard.question,
-                                      style: TextStyle(color: Colors.white),
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      image: DecorationImage(
+                                        image: AssetImage('assets/bg4.webp'),
+                                        fit: BoxFit.cover,
+                                      ),
+                                      borderRadius: BorderRadius.circular(15),
                                     ),
-                                    onTap: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                              FlashcardDetailScreen(
-                                            deckName: selectedDeck!,
-                                            flashcard: flashcard,
-                                          ),
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        color: Colors.deepPurple.withOpacity(0.5),
+                                        borderRadius: BorderRadius.circular(15),
+                                      ),
+                                      width: 300,
+                                      height: 400,
+                                      child: Center(
+                                        child: Text(
+                                          decks[selectedDeck]![currentIndex]
+                                              .question,
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 24),
                                         ),
-                                      );
-                                    },
+                                      ),
+                                    ),
                                   ),
-                                );
-                              },
+                                ),
+                                back: Card(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(15),
+                                  ),
+                                  elevation: 8,
+                                  shadowColor: Colors.black54,
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      image: DecorationImage(
+                                        image: AssetImage('assets/bg3.webp'),
+                                        fit: BoxFit.cover,
+                                      ),
+                                      borderRadius: BorderRadius.circular(15),
+                                    ),
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        color: Colors.deepPurple.withOpacity(0.5),
+                                        borderRadius: BorderRadius.circular(15),
+                                      ),
+                                      width: 300,
+                                      height: 400,
+                                      child: Center(
+                                        child: Text(
+                                          decks[selectedDeck]![currentIndex]
+                                              .answer,
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 24),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
                             ),
                     ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        ElevatedButton(
+                          onPressed: _nextFlashcard,
+                          child: Text('I Know'),
+                        ),
+                        ElevatedButton(
+                          onPressed: _nextFlashcard,
+                          child: Text('Review Tomorrow'),
+                        ),
+                        ElevatedButton(
+                          onPressed: _nextFlashcard,
+                          child: Text('Review Later'),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 20),
                     AddFlashcardWidget(
                         deckName: selectedDeck!, onAddFlashcard: _addFlashcard),
                   ],
