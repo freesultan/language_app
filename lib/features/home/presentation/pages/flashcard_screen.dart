@@ -161,7 +161,8 @@ class _FlashcardScreenState extends State<FlashcardScreen> {
                                     ),
                                     child: Container(
                                       decoration: BoxDecoration(
-                                        color: Colors.deepPurple.withOpacity(0.5),
+                                        color:
+                                            Colors.deepPurple.withOpacity(0.5),
                                         borderRadius: BorderRadius.circular(15),
                                       ),
                                       width: 300,
@@ -194,7 +195,8 @@ class _FlashcardScreenState extends State<FlashcardScreen> {
                                     ),
                                     child: Container(
                                       decoration: BoxDecoration(
-                                        color: Colors.deepPurple.withOpacity(0.5),
+                                        color:
+                                            Colors.deepPurple.withOpacity(0.5),
                                         borderRadius: BorderRadius.circular(15),
                                       ),
                                       width: 300,
@@ -214,22 +216,26 @@ class _FlashcardScreenState extends State<FlashcardScreen> {
                               ),
                             ),
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        ElevatedButton(
-                          onPressed: _nextFlashcard,
-                          child: Text('I Know'),
-                        ),
-                        ElevatedButton(
-                          onPressed: _nextFlashcard,
-                          child: Text('Review Tomorrow'),
-                        ),
-                        ElevatedButton(
-                          onPressed: _nextFlashcard,
-                          child: Text('Review Later'),
-                        ),
-                      ],
+                    Container(
+                      child: decks[selectedDeck]!.isEmpty
+                          ? SizedBox(height: 20)
+                          : Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                ElevatedButton(
+                                  onPressed: _nextFlashcard,
+                                  child: Text('I Know'),
+                                ),
+                                ElevatedButton(
+                                  onPressed: _nextFlashcard,
+                                  child: Text('Review Tomorrow'),
+                                ),
+                                ElevatedButton(
+                                  onPressed: _nextFlashcard,
+                                  child: Text('Review Later'),
+                                ),
+                              ],
+                            ),
                     ),
                     SizedBox(height: 20),
                     AddFlashcardWidget(
