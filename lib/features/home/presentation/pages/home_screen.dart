@@ -26,11 +26,17 @@ class HomeScreen extends StatelessWidget {
         appBar: _buildAppBar(context),
         body: Stack(
           children: [
-            Container(
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage('assets/bg1.webp'),
-                  fit: BoxFit.cover,
+            Positioned.fill(
+              child: Container(
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage('assets/bg3.webp'),
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                child: Container(
+                  color: Colors.blueAccent
+                      .withOpacity(0.5), // Color overlay with opacity
                 ),
               ),
             ),
@@ -60,15 +66,15 @@ class HomeScreen extends StatelessWidget {
                         Card(
                           color: Colors.lightBlue[50],
                           shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20)),
+                              borderRadius: BorderRadius.circular(10)),
                           elevation: 10,
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
                               'Welcome to Language Learning App',
                               style: TextStyle(
-                                color: Color.fromARGB(255, 6, 101, 124),
-                                fontSize: 24,
+                                color: Colors.blueAccent,
+                                fontSize: 20,
                                 fontWeight: FontWeight.bold,
                               ),
                               textAlign: TextAlign.center,
