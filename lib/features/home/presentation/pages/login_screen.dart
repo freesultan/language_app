@@ -41,7 +41,7 @@ class LoginScreen extends StatelessWidget {
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('bg4.webp'),
+            image: AssetImage('assets/bg4.webp'),
             fit: BoxFit.cover,
           ),
         ),

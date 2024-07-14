@@ -28,7 +28,7 @@ class HomeScreen extends StatelessWidget {
             Container(
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage('bg1.webp'),
+                  image: AssetImage('assets/bg1.webp'),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -51,7 +51,7 @@ class HomeScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Lottie.asset(
-                          'flesh.json',
+                          'assets/flesh.json',
                           width: 200,
                           height: 200,
                         ),

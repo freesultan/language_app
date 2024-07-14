@@ -136,7 +136,7 @@ class _FlashcardDetailScreenState extends State<FlashcardDetailScreen> {
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('bg4.webp'),
+            image: AssetImage('assets/bg4.webp'),
             fit: BoxFit.cover,
           ),
         ),
