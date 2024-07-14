@@ -5,6 +5,7 @@ import 'package:language_app/core/services/auth_service.dart';
 import '../../widgets/add_flashcard_widget.dart';
 import '../../widgets/create_deck_widget.dart';
 import 'package:language_app/features/home/presentation/pages/flashcard_detail_screen.dart';
+import 'package:badges/badges.dart' as badge;
 
 class FlashcardScreen extends StatefulWidget {
   @override
@@ -52,7 +53,7 @@ class _FlashcardScreenState extends State<FlashcardScreen> {
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('bg2.webp'),
+            image: AssetImage('assets/bg2.webp'),
             fit: BoxFit.cover,
           ),
         ),
@@ -61,7 +62,7 @@ class _FlashcardScreenState extends State<FlashcardScreen> {
           child: selectedDeck == null
               ? Column(
                   children: [
-                     Padding(
+                    Padding(
                       padding: EdgeInsets.all(16.0),
                       child: Card(
                         color: Colors.lightBlue[50],
@@ -69,7 +70,7 @@ class _FlashcardScreenState extends State<FlashcardScreen> {
                             borderRadius: BorderRadius.circular(20)),
                         elevation: 10,
                         child: const Padding(
-                          padding:  EdgeInsets.all(16.0),
+                          padding: EdgeInsets.all(16.0),
                           child: Text(
                             'Here is your Decks',
                             style: TextStyle(
@@ -81,31 +82,49 @@ class _FlashcardScreenState extends State<FlashcardScreen> {
                       ),
                     ),
                     Expanded(
-                        child: decks.isEmpty
-                            ? Center(child: Text('No decks available.'))
-                            : Stack(
-                                children: [
-                                  ListView.builder(
-                                    itemCount: decks.keys.length,
-                                    itemBuilder: (context, index) {
-                                      String deckName =
-                                          decks.keys.elementAt(index);
-                                      return Card(
-                                        margin:
-                                            EdgeInsets.symmetric(vertical: 10),
-                                        child: ListTile(
-                                          title: Text(deckName),
-                                          onTap: () {
-                                            setState(() {
-                                              selectedDeck = deckName;
-                                            });
-                                          },
-                                        ),
-                                      );
-                                    },
+                      child: decks.isEmpty
+                          ? Center(child: Text('No decks available.'))
+                          : ListView.builder(
+                              itemCount: decks.keys.length,
+                              itemBuilder: (context, index) {
+                                String deckName = decks.keys.elementAt(index);
+                                bool deckIsEmpty = decks[deckName]!.isEmpty;
+                                return GestureDetector(
+                                  onTap: () {
+                                    setState(() {
+                                      selectedDeck = deckName;
+                                    });
+                                  },
+                                  child: Card(
+                                    color: Colors.blueAccent,
+                                    margin: EdgeInsets.symmetric(vertical: 10),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(15),
+                                    ),
+                                    elevation: 5,
+                                    shadowColor: Colors.black54,
+                                    child: ListTile(
+                                      title: Text(deckName,
+                                          style:
+                                              TextStyle(color: Colors.white)),
+                                      trailing: deckIsEmpty
+                                          ? badge.Badge(
+                                              toAnimate: false,
+                                              shape: badge.BadgeShape.square,
+                                              badgeColor: Colors.red,
+                                              borderRadius:
+                                                  BorderRadius.circular(8),
+                                              badgeContent: Text('Empty',
+                                                  style: TextStyle(
+                                                      color: Colors.white)),
+                                            )
+                                          : null,
+                                    ),
                                   ),
-                                ],
-                              )),
+                                );
+                              },
+                            ),
+                    ),
                     CreateDeckWidget(onCreateDeck: _createDeck),
                   ],
                 )
@@ -119,9 +138,18 @@ class _FlashcardScreenState extends State<FlashcardScreen> {
                               itemBuilder: (context, index) {
                                 var flashcard = decks[selectedDeck]![index];
                                 return Card(
+                                  color: Colors.blueAccent,
                                   margin: EdgeInsets.symmetric(vertical: 10),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(15),
+                                  ),
+                                  elevation: 5,
+                                  shadowColor: Colors.black54,
                                   child: ListTile(
-                                    title: Text(flashcard.question),
+                                    title: Text(
+                                      flashcard.question,
+                                      style: TextStyle(color: Colors.white),
+                                    ),
                                     onTap: () {
                                       Navigator.push(
                                         context,
