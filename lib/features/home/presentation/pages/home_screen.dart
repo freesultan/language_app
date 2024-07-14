@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:language_app/features/home/presentation/pages/user_list_screen.dart';
 import '../../widgets/daily_lesson_widget.dart';
 import '../../widgets/bottom_nav_bar.dart';
 import 'package:provider/provider.dart';
@@ -78,41 +79,98 @@ class HomeScreen extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: 30, vertical: 15),
-                                shape: CircleBorder(),
-                                backgroundColor: Colors.blueAccent,
+                            Tooltip(
+                              message: 'Login',
+                              decoration: BoxDecoration(
+                                color: Colors.greenAccent,
+                                borderRadius: BorderRadius.circular(8),
                               ),
-                              onPressed: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => RegisterScreen()),
-                                );
-                              },
-                              child: Icon(Icons.person_add,
-                                  size: 40, color: Colors.white),
+                              textStyle: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              padding: EdgeInsets.all(10),
+                              child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: 30, vertical: 15),
+                                  shape: CircleBorder(),
+                                  backgroundColor: Colors.blueAccent,
+                                ),
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => RegisterScreen()),
+                                  );
+                                },
+                                child: Icon(Icons.person_add,
+                                    size: 40, color: Colors.white),
+                              ),
                             ),
                             SizedBox(width: 40),
-                            ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: 30, vertical: 15),
-                                shape: CircleBorder(),
-                                backgroundColor: Colors.greenAccent,
+                            Tooltip(
+                              message: 'Login',
+                              decoration: BoxDecoration(
+                                color: Colors.greenAccent,
+                                borderRadius: BorderRadius.circular(8),
                               ),
-                              onPressed: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => LoginScreen()),
-                                );
-                              },
-                              child: Icon(Icons.login,
-                                  size: 40, color: Colors.white),
+                              textStyle: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              padding: EdgeInsets.all(10),
+                              child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: 30, vertical: 15),
+                                  shape: CircleBorder(),
+                                  backgroundColor: Colors.greenAccent,
+                                ),
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => LoginScreen()),
+                                  );
+                                },
+                                child: Icon(Icons.login,
+                                    size: 40, color: Colors.white),
+                              ),
                             ),
+                            SizedBox(width: 40),
+                            Tooltip(
+                              message: 'Users List',
+                              decoration: BoxDecoration(
+                                color: Colors.greenAccent,
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              textStyle: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              padding: EdgeInsets.all(10),
+                              child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: 30, vertical: 15),
+                                  shape: CircleBorder(),
+                                  backgroundColor: Colors.purpleAccent,
+                                ),
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => UserListScreen()),
+                                  );
+                                },
+                                child: Icon(Icons.person,
+                                    size: 40, color: Colors.white),
+                              ),
+                            )
                           ],
                         ),
                       ],

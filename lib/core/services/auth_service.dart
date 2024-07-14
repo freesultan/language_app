@@ -15,6 +15,7 @@ class AuthService with ChangeNotifier {
   }
 
   User? get currentUser => _currentUser;
+  Box<User> get userBox => _userBox;
 
   bool login(String username, String password) {
     final user = _userBox.values.cast<User?>().firstWhere(
@@ -46,6 +47,7 @@ class AuthService with ChangeNotifier {
   }
   Map<String, List<Flashcard>> getUserDecks() {
     if (_currentUser != null) {
+      print('authservice.getUserDecks called with ${_currentUser!.username}' );
       final decks = (_flashcardBox.get(_currentUser!.username, defaultValue: <String, List<Map<String, String>>>{}) as Map).cast<String, List<dynamic>>() ?? {};
        return decks.map((key, value) => MapEntry(key, value.map((item) => Flashcard(
         question : item['question'],
@@ -55,6 +57,18 @@ class AuthService with ChangeNotifier {
     return {};
   }
 
+
+  Map<String, List<Flashcard>> getDecksOfAUser(User _user) {
+    if (_user != null) {
+      print('authservice.getDecksOfAUser called with ${_user!.username}' );
+      final decks = (_flashcardBox.get(_user!.username, defaultValue: <String, List<Map<String, String>>>{}) as Map).cast<String, List<dynamic>>() ?? {};
+       return decks.map((key, value) => MapEntry(key, value.map((item) => Flashcard(
+        question : item['question'],
+        answer : item['answer']
+      )).toList()));
+     }
+    return {};
+  }
   void addFlashcard(String deckName, String question, String answer) {
     if (_currentUser != null) {
       final decks = getUserDecks();
@@ -77,7 +91,8 @@ class AuthService with ChangeNotifier {
       final decks = getUserDecks();
       if (!decks.containsKey(deckName)) {
         decks[deckName] = [];
-            _flashcardBox.put(_currentUser!.username, decks.map((key, value) => MapEntry(key, value.map((item) => {
+            _flashcardBox.put(_currentUser!.username, decks.map(
+              (key, value) => MapEntry(key, value.map((item) => {
           'question': item.question,
           'answer': item.answer,
         }).toList())));

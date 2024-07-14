@@ -34,6 +34,10 @@ class _FlashcardScreenState extends State<FlashcardScreen> {
   Widget build(BuildContext context) {
     final decks = authService.getUserDecks();
 
+    // log user
+    print('flashcard screen:');
+    // Log the decks
+    print('Decks: ${decks.keys.toList()}');
     return Scaffold(
       appBar: AppBar(
         title: Text('Flashcards'),
