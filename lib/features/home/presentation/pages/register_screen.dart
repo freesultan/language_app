@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../../core/services/auth_service.dart';
+import 'package:language_app/features/home/presentation/pages/home_screen.dart';
 
 class RegisterScreen extends StatelessWidget {
   final TextEditingController _usernameController = TextEditingController();
@@ -107,7 +108,15 @@ class RegisterScreen extends StatelessWidget {
                                 context,
                                 listen: false);
                             if (authService.register(username, password)) {
-                              Navigator.pop(context);
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => HomeScreen()),
+                              );
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                      content:
+                                          Text('User created successfully!')));
                             } else {
                               ScaffoldMessenger.of(context).showSnackBar(
                                   const SnackBar(
