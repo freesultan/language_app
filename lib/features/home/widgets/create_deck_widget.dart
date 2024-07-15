@@ -4,7 +4,7 @@ class CreateDeckWidget extends StatelessWidget {
   final Function(String) onCreateDeck;
   final TextEditingController _deckNameController = TextEditingController();
 
-  CreateDeckWidget({required this.onCreateDeck});
+  CreateDeckWidget({super.key, required this.onCreateDeck});
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +12,7 @@ class CreateDeckWidget extends StatelessWidget {
       onPressed: () {
         _showCreateDeckDialog(context);
       },
-      child: Text('Create Deck'),
+      child: const Text('Create Deck'),
     );
   }
 
@@ -21,17 +21,17 @@ class CreateDeckWidget extends StatelessWidget {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: Text('Create Deck'),
+          title: const Text('Create Deck'),
           content: TextField(
             controller: _deckNameController,
-          decoration: InputDecoration(labelText: 'Deck Name'),
+          decoration: const InputDecoration(labelText: 'Deck Name'),
         ),
           actions: [
             TextButton(
               onPressed: () {
                 Navigator.pop(context);
               },
-              child: Text('Cancel'),
+              child: const Text('Cancel'),
             ),
         ElevatedButton(
           onPressed: () {
@@ -39,7 +39,7 @@ class CreateDeckWidget extends StatelessWidget {
                 onCreateDeck(deckName);
                 Navigator.pop(context);
               },
-              child: Text('Create'),
+              child: const Text('Create'),
         ),
       ],
     );

@@ -9,6 +9,8 @@ import 'package:badges/badges.dart' as badge;
 import 'package:flip_card/flip_card.dart';
 
 class FlashcardScreen extends StatefulWidget {
+  const FlashcardScreen({super.key});
+
   @override
   _FlashcardScreenState createState() => _FlashcardScreenState();
 }
@@ -49,7 +51,7 @@ class _FlashcardScreenState extends State<FlashcardScreen> {
       appBar: selectedDeck != null
           ? AppBar(
               leading: IconButton(
-                icon: Icon(Icons.arrow_back),
+                icon: const Icon(Icons.arrow_back),
                 onPressed: () {
                   setState(() {
                     selectedDeck = null;
@@ -61,7 +63,7 @@ class _FlashcardScreenState extends State<FlashcardScreen> {
             )
           : null,
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage('assets/bg2.webp'),
             fit: BoxFit.cover,
@@ -73,7 +75,7 @@ class _FlashcardScreenState extends State<FlashcardScreen> {
               ? Column(
                   children: [
                     Padding(
-                      padding: EdgeInsets.all(16.0),
+                      padding: const EdgeInsets.all(16.0),
                       child: Card(
                         color: Colors.lightBlue[50],
                         shape: RoundedRectangleBorder(
@@ -93,7 +95,7 @@ class _FlashcardScreenState extends State<FlashcardScreen> {
                     ),
                     Expanded(
                       child: decks.isEmpty
-                          ? Center(child: Text('No decks available.'))
+                          ? const Center(child: Text('No decks available.'))
                           : ListView.builder(
                               itemCount: decks.keys.length,
                               itemBuilder: (context, index) {
@@ -107,7 +109,7 @@ class _FlashcardScreenState extends State<FlashcardScreen> {
                                   },
                                   child: Card(
                                     color: Colors.blueAccent,
-                                    margin: EdgeInsets.symmetric(vertical: 10),
+                                    margin: const EdgeInsets.symmetric(vertical: 10),
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(15),
                                     ),
@@ -116,7 +118,7 @@ class _FlashcardScreenState extends State<FlashcardScreen> {
                                     child: ListTile(
                                       title: Text(deckName,
                                           style:
-                                              TextStyle(color: Colors.white)),
+                                              const TextStyle(color: Colors.white)),
                                       trailing: deckIsEmpty
                                           ? badge.Badge(
                                               toAnimate: false,
@@ -124,7 +126,7 @@ class _FlashcardScreenState extends State<FlashcardScreen> {
                                               badgeColor: Colors.red,
                                               borderRadius:
                                                   BorderRadius.circular(8),
-                                              badgeContent: Text('Empty',
+                                              badgeContent: const Text('Empty',
                                                   style: TextStyle(
                                                       color: Colors.white)),
                                             )
@@ -142,7 +144,7 @@ class _FlashcardScreenState extends State<FlashcardScreen> {
                   children: [
                     Expanded(
                       child: decks[selectedDeck]!.isEmpty
-                          ? Center(child: Text('No flashcards available.'))
+                          ? const Center(child: Text('No flashcards available.'))
                           : Center(
                               child: FlipCard(
                                 front: Card(
@@ -153,7 +155,7 @@ class _FlashcardScreenState extends State<FlashcardScreen> {
                                   shadowColor: Colors.black54,
                                   child: Container(
                                     decoration: BoxDecoration(
-                                      image: DecorationImage(
+                                      image: const DecorationImage(
                                         image: AssetImage('assets/bg4.webp'),
                                         fit: BoxFit.cover,
                                       ),
@@ -171,7 +173,7 @@ class _FlashcardScreenState extends State<FlashcardScreen> {
                                         child: Text(
                                           decks[selectedDeck]![currentIndex]
                                               .question,
-                                          style: TextStyle(
+                                          style: const TextStyle(
                                               color: Colors.white,
                                               fontSize: 24),
                                         ),
@@ -187,7 +189,7 @@ class _FlashcardScreenState extends State<FlashcardScreen> {
                                   shadowColor: Colors.black54,
                                   child: Container(
                                     decoration: BoxDecoration(
-                                      image: DecorationImage(
+                                      image: const DecorationImage(
                                         image: AssetImage('assets/bg3.webp'),
                                         fit: BoxFit.cover,
                                       ),
@@ -205,7 +207,7 @@ class _FlashcardScreenState extends State<FlashcardScreen> {
                                         child: Text(
                                           decks[selectedDeck]![currentIndex]
                                               .answer,
-                                          style: TextStyle(
+                                          style: const TextStyle(
                                               color: Colors.white,
                                               fontSize: 24),
                                         ),
@@ -218,26 +220,26 @@ class _FlashcardScreenState extends State<FlashcardScreen> {
                     ),
                     Container(
                       child: decks[selectedDeck]!.isEmpty
-                          ? SizedBox(height: 20)
+                          ? const SizedBox(height: 20)
                           : Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 ElevatedButton(
                                   onPressed: _nextFlashcard,
-                                  child: Text('I Know'),
+                                  child: const Text('I Know'),
                                 ),
                                 ElevatedButton(
                                   onPressed: _nextFlashcard,
-                                  child: Text('Review Tomorrow'),
+                                  child: const Text('Review Tomorrow'),
                                 ),
                                 ElevatedButton(
                                   onPressed: _nextFlashcard,
-                                  child: Text('Review Later'),
+                                  child: const Text('Review Later'),
                                 ),
                               ],
                             ),
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     AddFlashcardWidget(
                         deckName: selectedDeck!, onAddFlashcard: _addFlashcard),
                   ],

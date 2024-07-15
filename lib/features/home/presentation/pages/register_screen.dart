@@ -18,7 +18,7 @@ class RegisterScreen extends StatelessWidget {
           elevation: 0,
           flexibleSpace: Container(
             decoration: BoxDecoration(
-              gradient: LinearGradient(
+              gradient: const LinearGradient(
                 colors: [
                   Colors.blueAccent,
                   Colors.lightBlue,
@@ -32,7 +32,7 @@ class RegisterScreen extends StatelessWidget {
                   color: Colors.black.withOpacity(0.5),
                   spreadRadius: 2,
                   blurRadius: 8,
-                  offset: Offset(2, 4),
+                  offset: const Offset(2, 4),
                 ),
               ],
             ),
@@ -58,7 +58,7 @@ class RegisterScreen extends StatelessWidget {
                     padding: const EdgeInsets.all(16.0),
                     child: Column(
                       children: [
-                        Text(
+                        const Text(
                           'Register Please',
                           style: TextStyle(
                             fontSize: 24,
@@ -66,7 +66,7 @@ class RegisterScreen extends StatelessWidget {
                             color: Colors.blueAccent,
                           ),
                         ),
-                        SizedBox(height: 20),
+                        const SizedBox(height: 20),
                         TextField(
                           controller: _usernameController,
                           decoration: InputDecoration(
@@ -76,7 +76,7 @@ class RegisterScreen extends StatelessWidget {
                             ),
                           ),
                         ),
-                        SizedBox(height: 20),
+                        const SizedBox(height: 20),
                         TextField(
                           controller: _passwordController,
                           decoration: InputDecoration(
@@ -87,15 +87,15 @@ class RegisterScreen extends StatelessWidget {
                           ),
                           obscureText: true,
                         ),
-                        SizedBox(height: 20),
+                        const SizedBox(height: 20),
                         ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            padding: EdgeInsets.symmetric(
+                            padding: const EdgeInsets.symmetric(
                                 horizontal: 40, vertical: 15),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10),
                             ),
-                            textStyle: TextStyle(
+                            textStyle: const TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.bold,
                             ),
@@ -111,7 +111,7 @@ class RegisterScreen extends StatelessWidget {
                               Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => HomeScreen()),
+                                    builder: (context) => const HomeScreen()),
                               );
                               ScaffoldMessenger.of(context).showSnackBar(
                                   const SnackBar(

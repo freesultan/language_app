@@ -7,7 +7,7 @@ class FlashcardDetailScreen extends StatefulWidget {
   final String deckName;
   final Flashcard flashcard;
 
-  FlashcardDetailScreen({required this.deckName, required this.flashcard});
+  const FlashcardDetailScreen({super.key, required this.deckName, required this.flashcard});
 
   @override
   _FlashcardDetailScreenState createState() => _FlashcardDetailScreenState();
@@ -23,7 +23,7 @@ class _FlashcardDetailScreenState extends State<FlashcardDetailScreen> {
         title: Text(widget.deckName),
       ),
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage('assets/bg4.webp'),
             fit: BoxFit.cover,
@@ -41,21 +41,21 @@ class _FlashcardDetailScreenState extends State<FlashcardDetailScreen> {
                   });
                 },
                 child: Container(
-                  padding: EdgeInsets.all(24.0),
+                  padding: const EdgeInsets.all(24.0),
                   color: Colors.blueAccent,
                   child: Text(
                     showAnswer ? widget.flashcard.answer : widget.flashcard.question,
-                    style: TextStyle(fontSize: 24, color: Colors.white),
+                    style: const TextStyle(fontSize: 24, color: Colors.white),
                     textAlign: TextAlign.center,
                   ),
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
                   Navigator.pop(context);
                 },
-                child: Text('Back to Deck'),
+                child: const Text('Back to Deck'),
               ),
             ],
                     ),

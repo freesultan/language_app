@@ -39,7 +39,7 @@ class BottomNavBar extends StatelessWidget {
          case 2:
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) =>  FlashcardScreen())
+              MaterialPageRoute(builder: (context) =>  const FlashcardScreen())
               );
             break;
         }

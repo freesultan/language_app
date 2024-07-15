@@ -58,16 +58,15 @@ class AuthService with ChangeNotifier {
   }
 
 
-  Map<String, List<Flashcard>> getDecksOfAUser(User _user) {
-    if (_user != null) {
-      // print('authservice.getDecksOfAUser called with ${_user!.username}' );
-      final decks = (_flashcardBox.get(_user!.username, defaultValue: <String, List<Map<String, String>>>{}) as Map).cast<String, List<dynamic>>() ?? {};
+  Map<String, List<Flashcard>> getDecksOfAUser(User user {
+    
+    userprint('authservice.getDecksOfAUser called with ${_user!.username}' );
+      final decks = (_flashcardBox.get(user.username, defauluser: <String, List<Map<String, String>>>{}) as Map).cast<String, List<dynamic>>() ?? {};
        return decks.map((key, value) => MapEntry(key, value.map((item) => Flashcard(
         question : item['question'],
         answer : item['answer']
       )).toList()));
-     }
-    return {};
+   
   }
   void addFlashcard(String deckName, String question, String answer) {
     if (_currentUser != null) {

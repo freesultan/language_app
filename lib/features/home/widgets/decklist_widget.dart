@@ -9,7 +9,7 @@ import 'package:provider/provider.dart';
 class DeckListWidget extends StatelessWidget {
   final User user;
 
-  DeckListWidget({required this.user});
+  const DeckListWidget({super.key, required this.user});
 
   @override
   Widget build(BuildContext context) {

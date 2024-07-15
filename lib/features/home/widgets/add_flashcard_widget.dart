@@ -6,7 +6,7 @@ class AddFlashcardWidget extends StatelessWidget {
   final TextEditingController _questionController = TextEditingController();
   final TextEditingController _answerController = TextEditingController();
 
-  AddFlashcardWidget({required this.deckName, required this.onAddFlashcard});
+  AddFlashcardWidget({super.key, required this.deckName, required this.onAddFlashcard});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +14,7 @@ class AddFlashcardWidget extends StatelessWidget {
       onPressed: () {
         _showAddFlashcardDialog(context);
       },
-      child: Text('Add Flashcard'),
+      child: const Text('Add Flashcard'),
     );
   }
 
@@ -23,17 +23,17 @@ class AddFlashcardWidget extends StatelessWidget {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: Text('Add Flashcard'),
+          title: const Text('Add Flashcard'),
           content: Column(
             mainAxisSize: MainAxisSize.min,
       children: [
         TextField(
                 controller: _questionController,
-          decoration: InputDecoration(labelText: 'Question'),
+          decoration: const InputDecoration(labelText: 'Question'),
         ),
         TextField(
                 controller: _answerController,
-          decoration: InputDecoration(labelText: 'Answer'),
+          decoration: const InputDecoration(labelText: 'Answer'),
               ),
             ],
           ),
@@ -42,7 +42,7 @@ class AddFlashcardWidget extends StatelessWidget {
               onPressed: () {
                 Navigator.pop(context);
               },
-              child: Text('Cancel'),
+              child: const Text('Cancel'),
         ),
         ElevatedButton(
           onPressed: () {
@@ -51,7 +51,7 @@ class AddFlashcardWidget extends StatelessWidget {
                 onAddFlashcard(deckName, question, answer);
                 Navigator.pop(context);
               },
-              child: Text('Add'),
+              child: const Text('Add'),
         ),
       ],
         );

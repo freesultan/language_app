@@ -18,7 +18,7 @@ class LoginScreen extends StatelessWidget {
         elevation: 0,
         flexibleSpace: Container(
           decoration: BoxDecoration(
-            gradient: LinearGradient(
+            gradient: const LinearGradient(
               colors: [
                 Colors.blueAccent,
                 Colors.lightBlue,
@@ -32,7 +32,7 @@ class LoginScreen extends StatelessWidget {
                 color: Colors.black.withOpacity(0.5),
                 spreadRadius: 2,
                 blurRadius: 8,
-                offset: Offset(2, 4),
+                offset: const Offset(2, 4),
               ),
             ],
           ),
@@ -59,7 +59,7 @@ class LoginScreen extends StatelessWidget {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Text(
+                    const Text(
                       'Welcome back!',
                       style: TextStyle(
                         fontSize: 24,
@@ -67,7 +67,7 @@ class LoginScreen extends StatelessWidget {
                         color: Colors.blueAccent,
                       ),
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     TextField(
                       controller: _usernameController,
                       decoration: InputDecoration(
@@ -77,7 +77,7 @@ class LoginScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     TextField(
                       controller: _passwordController,
                       decoration: InputDecoration(
@@ -88,15 +88,15 @@ class LoginScreen extends StatelessWidget {
                       ),
                       obscureText: true,
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         padding:
-                            EdgeInsets.symmetric(horizontal: 40, vertical: 15),
+                            const EdgeInsets.symmetric(horizontal: 40, vertical: 15),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
-                        textStyle: TextStyle(
+                        textStyle: const TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
                         ),

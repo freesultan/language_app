@@ -28,7 +28,7 @@ class HomeScreen extends StatelessWidget {
           children: [
             Positioned.fill(
               child: Container(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   image: DecorationImage(
                     image: AssetImage('assets/bg3.webp'),
                     fit: BoxFit.cover,
@@ -68,8 +68,8 @@ class HomeScreen extends StatelessWidget {
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10)),
                           elevation: 10,
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
+                          child: const Padding(
+                            padding: EdgeInsets.all(8.0),
                             child: Text(
                               'Welcome to Language Learning App',
                               style: TextStyle(
@@ -81,7 +81,7 @@ class HomeScreen extends StatelessWidget {
                             ),
                           ),
                         ),
-                        SizedBox(height: 40),
+                        const SizedBox(height: 40),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -91,17 +91,17 @@ class HomeScreen extends StatelessWidget {
                                 color: Colors.greenAccent,
                                 borderRadius: BorderRadius.circular(8),
                               ),
-                              textStyle: TextStyle(
+                              textStyle: const TextStyle(
                                 color: Colors.white,
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold,
                               ),
-                              padding: EdgeInsets.all(10),
+                              padding: const EdgeInsets.all(10),
                               child: ElevatedButton(
                                 style: ElevatedButton.styleFrom(
-                                  padding: EdgeInsets.symmetric(
+                                  padding: const EdgeInsets.symmetric(
                                       horizontal: 30, vertical: 15),
-                                  shape: CircleBorder(),
+                                  shape: const CircleBorder(),
                                   backgroundColor: Colors.blueAccent,
                                 ),
                                 onPressed: () {
@@ -111,28 +111,28 @@ class HomeScreen extends StatelessWidget {
                                         builder: (context) => RegisterScreen()),
                                   );
                                 },
-                                child: Icon(Icons.person_add,
+                                child: const Icon(Icons.person_add,
                                     size: 40, color: Colors.white),
                               ),
                             ),
-                            SizedBox(width: 40),
+                            const SizedBox(width: 40),
                             Tooltip(
                               message: 'Login',
                               decoration: BoxDecoration(
                                 color: Colors.greenAccent,
                                 borderRadius: BorderRadius.circular(8),
                               ),
-                              textStyle: TextStyle(
+                              textStyle: const TextStyle(
                                 color: Colors.white,
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold,
                               ),
-                              padding: EdgeInsets.all(10),
+                              padding: const EdgeInsets.all(10),
                               child: ElevatedButton(
                                 style: ElevatedButton.styleFrom(
-                                  padding: EdgeInsets.symmetric(
+                                  padding: const EdgeInsets.symmetric(
                                       horizontal: 30, vertical: 15),
-                                  shape: CircleBorder(),
+                                  shape: const CircleBorder(),
                                   backgroundColor: Colors.greenAccent,
                                 ),
                                 onPressed: () {
@@ -142,38 +142,38 @@ class HomeScreen extends StatelessWidget {
                                         builder: (context) => LoginScreen()),
                                   );
                                 },
-                                child: Icon(Icons.login,
+                                child: const Icon(Icons.login,
                                     size: 40, color: Colors.white),
                               ),
                             ),
-                            SizedBox(width: 40),
+                            const SizedBox(width: 40),
                             Tooltip(
                               message: 'Users List',
                               decoration: BoxDecoration(
                                 color: Colors.greenAccent,
                                 borderRadius: BorderRadius.circular(8),
                               ),
-                              textStyle: TextStyle(
+                              textStyle: const TextStyle(
                                 color: Colors.white,
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold,
                               ),
-                              padding: EdgeInsets.all(10),
+                              padding: const EdgeInsets.all(10),
                               child: ElevatedButton(
                                 style: ElevatedButton.styleFrom(
-                                  padding: EdgeInsets.symmetric(
+                                  padding: const EdgeInsets.symmetric(
                                       horizontal: 30, vertical: 15),
-                                  shape: CircleBorder(),
+                                  shape: const CircleBorder(),
                                   backgroundColor: Colors.purpleAccent,
                                 ),
                                 onPressed: () {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => UserListScreen()),
+                                        builder: (context) => const UserListScreen()),
                                   );
                                 },
-                                child: Icon(Icons.person,
+                                child: const Icon(Icons.person,
                                     size: 40, color: Colors.white),
                               ),
                             )
@@ -197,12 +197,12 @@ PreferredSizeWidget? _buildAppBar(BuildContext context) {
         children: [
           Text('Hello, ${authService.currentUser!.username}'),
           IconButton(
-            icon: Icon(Icons.logout),
+            icon: const Icon(Icons.logout),
             onPressed: () {
               authService.logout();
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) => HomeScreen()),
+                MaterialPageRoute(builder: (context) => const HomeScreen()),
               );
             },
           ),
@@ -212,7 +212,7 @@ PreferredSizeWidget? _buildAppBar(BuildContext context) {
       elevation: 10,
       flexibleSpace: Container(
         decoration: BoxDecoration(
-          gradient: LinearGradient(
+          gradient: const LinearGradient(
             colors: [
               Colors.blueAccent,
               Colors.lightBlue,
@@ -226,7 +226,7 @@ PreferredSizeWidget? _buildAppBar(BuildContext context) {
               color: Colors.black.withOpacity(0.5),
               spreadRadius: 2,
               blurRadius: 8,
-              offset: Offset(2, 4),
+              offset: const Offset(2, 4),
             ),
           ],
         ),
