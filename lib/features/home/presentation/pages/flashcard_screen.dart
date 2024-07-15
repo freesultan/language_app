@@ -7,6 +7,7 @@ import '../../widgets/create_deck_widget.dart';
 // import 'package:language_app/features/home/presentation/pages/flashcard_detail_screen.dart';
 import 'package:badges/badges.dart' as badge;
 import 'package:flip_card/flip_card.dart';
+import 'package:language_app/features/home/widgets/search_widget.dart';
 
 class FlashcardScreen extends StatefulWidget {
   const FlashcardScreen({super.key});
@@ -41,6 +42,19 @@ class _FlashcardScreenState extends State<FlashcardScreen> {
       currentIndex =
           (currentIndex + 1) % authService.getUserDecks()[selectedDeck]!.length;
     });
+  }
+
+  void _showSearchDialog() {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return SearchWidget(
+          onAddFlashcard: (question, answer) {
+            _addFlashcard(selectedDeck!, question, answer);
+          },
+        );
+      },
+    );
   }
 
   @override
@@ -248,7 +262,7 @@ class _FlashcardScreenState extends State<FlashcardScreen> {
                                   ),
                                 ),
                                 ElevatedButton(
-                                   style: ElevatedButton.styleFrom(
+                                  style: ElevatedButton.styleFrom(
                                     padding: EdgeInsets.symmetric(
                                         horizontal: 10, vertical: 15),
                                     shape: RoundedRectangleBorder(
@@ -269,7 +283,7 @@ class _FlashcardScreenState extends State<FlashcardScreen> {
                                   ),
                                 ),
                                 ElevatedButton(
-                                   style: ElevatedButton.styleFrom(
+                                  style: ElevatedButton.styleFrom(
                                     padding: EdgeInsets.symmetric(
                                         horizontal: 10, vertical: 15),
                                     shape: RoundedRectangleBorder(
@@ -293,8 +307,19 @@ class _FlashcardScreenState extends State<FlashcardScreen> {
                             ),
                     ),
                     const SizedBox(height: 20),
-                    AddFlashcardWidget(
-                        deckName: selectedDeck!, onAddFlashcard: _addFlashcard),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      
+                      children: [
+                        AddFlashcardWidget(
+                            deckName: selectedDeck!,
+                            onAddFlashcard: _addFlashcard),
+                        ElevatedButton(
+                          onPressed: _showSearchDialog,
+                          child: const Text('Search words'),
+                        ),
+                      ],
+                    ),
                   ],
                 ),
         ),
