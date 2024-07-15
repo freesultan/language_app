@@ -109,7 +109,8 @@ class _FlashcardScreenState extends State<FlashcardScreen> {
                                   },
                                   child: Card(
                                     color: Colors.blueAccent,
-                                    margin: const EdgeInsets.symmetric(vertical: 10),
+                                    margin: const EdgeInsets.symmetric(
+                                        vertical: 10),
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(15),
                                     ),
@@ -117,8 +118,8 @@ class _FlashcardScreenState extends State<FlashcardScreen> {
                                     shadowColor: Colors.black54,
                                     child: ListTile(
                                       title: Text(deckName,
-                                          style:
-                                              const TextStyle(color: Colors.white)),
+                                          style: const TextStyle(
+                                              color: Colors.white)),
                                       trailing: deckIsEmpty
                                           ? badge.Badge(
                                               toAnimate: false,
@@ -144,7 +145,8 @@ class _FlashcardScreenState extends State<FlashcardScreen> {
                   children: [
                     Expanded(
                       child: decks[selectedDeck]!.isEmpty
-                          ? const Center(child: Text('No flashcards available.'))
+                          ? const Center(
+                              child: Text('No flashcards available.'))
                           : Center(
                               child: FlipCard(
                                 front: Card(
@@ -225,16 +227,67 @@ class _FlashcardScreenState extends State<FlashcardScreen> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: 10, vertical: 15),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(20),
+                                    ),
+                                    backgroundColor: Colors.blueAccent,
+                                    shadowColor: Colors.black,
+                                    elevation: 5,
+                                  ),
                                   onPressed: _nextFlashcard,
-                                  child: const Text('I Know'),
+                                  child: const Text(
+                                    'I Know',
+                                    style: TextStyle(
+                                      fontSize: 10,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white,
+                                    ),
+                                  ),
                                 ),
                                 ElevatedButton(
+                                   style: ElevatedButton.styleFrom(
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: 10, vertical: 15),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(20),
+                                    ),
+                                    backgroundColor: Colors.blueGrey,
+                                    shadowColor: Colors.black,
+                                    elevation: 5,
+                                  ),
                                   onPressed: _nextFlashcard,
-                                  child: const Text('Review Tomorrow'),
+                                  child: const Text(
+                                    'Review Tomorrow',
+                                    style: TextStyle(
+                                      fontSize: 10,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white,
+                                    ),
+                                  ),
                                 ),
                                 ElevatedButton(
+                                   style: ElevatedButton.styleFrom(
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: 10, vertical: 15),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(20),
+                                    ),
+                                    backgroundColor: Colors.deepPurple[800],
+                                    shadowColor: Colors.black,
+                                    elevation: 5,
+                                  ),
                                   onPressed: _nextFlashcard,
-                                  child: const Text('Review Later'),
+                                  child: const Text(
+                                    'Review Later',
+                                    style: TextStyle(
+                                      fontSize: 10,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white,
+                                    ),
+                                  ),
                                 ),
                               ],
                             ),

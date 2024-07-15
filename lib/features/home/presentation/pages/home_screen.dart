@@ -69,12 +69,12 @@ class HomeScreen extends StatelessWidget {
                               borderRadius: BorderRadius.circular(10)),
                           elevation: 10,
                           child: const Padding(
-                            padding: EdgeInsets.all(8.0),
+                            padding: EdgeInsets.all(8.0), 
                             child: Text(
                               'Welcome to Language Learning App',
                               style: TextStyle(
                                 color: Colors.blueAccent,
-                                fontSize: 20,
+                                fontSize: 10,
                                 fontWeight: FontWeight.bold,
                               ),
                               textAlign: TextAlign.center,
@@ -100,7 +100,7 @@ class HomeScreen extends StatelessWidget {
                               child: ElevatedButton(
                                 style: ElevatedButton.styleFrom(
                                   padding: const EdgeInsets.symmetric(
-                                      horizontal: 30, vertical: 15),
+                                      horizontal: 15, vertical: 15),
                                   shape: const CircleBorder(),
                                   backgroundColor: Colors.blueAccent,
                                 ),
@@ -112,10 +112,10 @@ class HomeScreen extends StatelessWidget {
                                   );
                                 },
                                 child: const Icon(Icons.person_add,
-                                    size: 40, color: Colors.white),
+                                    size: 20, color: Colors.white),
                               ),
                             ),
-                            const SizedBox(width: 40),
+                            // const SizedBox(width: 40),
                             Tooltip(
                               message: 'Login',
                               decoration: BoxDecoration(
@@ -131,7 +131,7 @@ class HomeScreen extends StatelessWidget {
                               child: ElevatedButton(
                                 style: ElevatedButton.styleFrom(
                                   padding: const EdgeInsets.symmetric(
-                                      horizontal: 30, vertical: 15),
+                                      horizontal: 15, vertical: 15),
                                   shape: const CircleBorder(),
                                   backgroundColor: Colors.greenAccent,
                                 ),
@@ -143,10 +143,10 @@ class HomeScreen extends StatelessWidget {
                                   );
                                 },
                                 child: const Icon(Icons.login,
-                                    size: 40, color: Colors.white),
+                                    size: 20, color: Colors.white),
                               ),
                             ),
-                            const SizedBox(width: 40),
+                            // const SizedBox(width: 40),
                             Tooltip(
                               message: 'Users List',
                               decoration: BoxDecoration(
@@ -162,7 +162,7 @@ class HomeScreen extends StatelessWidget {
                               child: ElevatedButton(
                                 style: ElevatedButton.styleFrom(
                                   padding: const EdgeInsets.symmetric(
-                                      horizontal: 30, vertical: 15),
+                                      horizontal: 15, vertical: 15),
                                   shape: const CircleBorder(),
                                   backgroundColor: Colors.purpleAccent,
                                 ),
@@ -174,7 +174,7 @@ class HomeScreen extends StatelessWidget {
                                   );
                                 },
                                 child: const Icon(Icons.person,
-                                    size: 40, color: Colors.white),
+                                    size: 20, color: Colors.white),
                               ),
                             )
                           ],
