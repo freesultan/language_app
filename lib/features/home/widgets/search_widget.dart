@@ -29,10 +29,10 @@ class _SearchWidgetState extends State<SearchWidget> {
 
     if (response.statusCode == 200) {
       final List data = json.decode(response.body);
-      print('data: ${data} ');
+      // print('data: ${data} ');
       final String meaning =
           data[0]['meanings'][0]['definitions'][0]['definition'];
-      print('meaning: ${meaning}');
+      // print('meaning: ${meaning}');
 
       setState(() {
         _searchResult = meaning;
