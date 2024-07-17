@@ -150,6 +150,7 @@ class _FlashcardScreenState extends State<FlashcardScreen> {
                       var flashcard = flashcards[index];
                       return Center(child: FlashcardView(flashcard: flashcard));
                     })),
+        SizedBox(height: 20),
         FlashcardActions(
           onKnownPressed: () {
             _markFlashcardAsKnown(
@@ -164,10 +165,10 @@ class _FlashcardScreenState extends State<FlashcardScreen> {
             _pageController.nextPage(
                 duration: const Duration(milliseconds: 300),
                 curve: Curves.easeIn);
-          }, 
-          onLearnPressed: () { 
+          },
+          onLearnPressed: () {
             // to do: add learn functionality
-           },
+          },
         ),
         const SizedBox(height: 80),
         Row(
