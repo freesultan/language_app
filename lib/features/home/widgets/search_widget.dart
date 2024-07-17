@@ -22,25 +22,32 @@ class _SearchWidgetState extends State<SearchWidget> {
       _isLoading = true;
     });
 
-    final response = await http.get(
-      Uri.parse(
-          'https://api.dictionaryapi.dev/api/v2/entries/en/${_searchController.text}'),
-    );
+    try {
+      final response = await http.get(
+        Uri.parse(
+            'https://api.dictionaryapi.dev/api/v2/entries/en/${_searchController.text}'),
+      );
 
-    if (response.statusCode == 200) {
-      final List data = json.decode(response.body);
-      // print('data: ${data} ');
-      final String meaning =
-          data[0]['meanings'][0]['definitions'][0]['definition'];
-      // print('meaning: ${meaning}');
+      if (response.statusCode == 200) {
+        final List data = json.decode(response.body);
+        // print('data: ${data} ');
+        final String meaning =
+            data[0]['meanings'][0]['definitions'][0]['definition'];
+        // print('meaning: ${meaning}');
 
+        setState(() {
+          _searchResult = meaning;
+          _isLoading = false;
+        });
+      } else {
+        setState(() {
+          _searchResult = 'Word not found';
+          _isLoading = false;
+        });
+      }
+    } catch (e) {
       setState(() {
-        _searchResult = meaning;
-        _isLoading = false;
-      });
-    } else {
-      setState(() {
-        _searchResult = 'Word not found';
+        _searchResult = 'An error occurred';
         _isLoading = false;
       });
     }
