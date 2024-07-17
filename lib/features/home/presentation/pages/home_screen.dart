@@ -86,7 +86,7 @@ class HomeScreen extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Tooltip(
-                              message: 'Login',
+                              message: 'Register',
                               decoration: BoxDecoration(
                                 color: Colors.greenAccent,
                                 borderRadius: BorderRadius.circular(8),

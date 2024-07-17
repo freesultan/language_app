@@ -8,6 +8,7 @@ import '../../widgets/create_deck_widget.dart';
 import 'package:badges/badges.dart' as badge;
 import 'package:flip_card/flip_card.dart';
 import 'package:language_app/features/home/widgets/search_widget.dart';
+import 'package:language_app/core/models/flashcard.dart';
 
 class FlashcardScreen extends StatefulWidget {
   const FlashcardScreen({super.key});
@@ -19,7 +20,8 @@ class FlashcardScreen extends StatefulWidget {
 class _FlashcardScreenState extends State<FlashcardScreen> {
   late AuthService authService;
   String? selectedDeck;
-  int currentIndex = 0;
+  // controling swapping card index
+  PageController _pageController = PageController();
 
   @override
   void initState() {
@@ -37,11 +39,16 @@ class _FlashcardScreenState extends State<FlashcardScreen> {
     setState(() {}); // Rebuild the widget to reflect the new flashcard
   }
 
-  void _nextFlashcard() {
-    setState(() {
-      currentIndex =
-          (currentIndex + 1) % authService.getUserDecks()[selectedDeck]!.length;
-    });
+  void _deleteFlashcard(String deckName, Flashcard flashcard) {
+    //to do: add delete functionality if is needed
+    //authService.deleteFlashcard(deckName, flashcard);
+    setState(() {});
+  }
+
+  void _markFlashcardAsKnown(String deckName, Flashcard flashcard) {
+    // todo: add lithner functionality
+    //authService.markFlashcardAsKnown(deckName, flashcard);
+    setState(() {});
   }
 
   void _showSearchDialog() {
@@ -69,7 +76,7 @@ class _FlashcardScreenState extends State<FlashcardScreen> {
                 onPressed: () {
                   setState(() {
                     selectedDeck = null;
-                    currentIndex = 0;
+                    _pageController = PageController();
                   });
                 },
               ),
@@ -158,82 +165,93 @@ class _FlashcardScreenState extends State<FlashcardScreen> {
               : Column(
                   children: [
                     Expanded(
-                      child: decks[selectedDeck]!.isEmpty
-                          ? const Center(
-                              child: Text('No flashcards available.'))
-                          : Center(
-                              child: FlipCard(
-                                front: Card(
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(15),
-                                  ),
-                                  elevation: 8,
-                                  shadowColor: Colors.black54,
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      image: const DecorationImage(
-                                        image: AssetImage('assets/bg4.webp'),
-                                        fit: BoxFit.cover,
+                        child: decks[selectedDeck]!.isEmpty
+                            ? const Center(
+                                child: Text('No flashcards available.'))
+                            : PageView.builder(
+                                controller: _pageController,
+                                itemCount: decks[selectedDeck]!.length,
+                                itemBuilder: (context, index) {
+                                  var flashcard = decks[selectedDeck]![index];
+                                  return Center(
+                                    child: FlipCard(
+                                      front: Card(
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(15),
+                                        ),
+                                        elevation: 8,
+                                        shadowColor: Colors.black54,
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            image: const DecorationImage(
+                                              image:
+                                                  AssetImage('assets/bg4.webp'),
+                                              fit: BoxFit.cover,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(15),
+                                          ),
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                              color: Colors.deepPurple
+                                                  .withOpacity(0.5),
+                                              borderRadius:
+                                                  BorderRadius.circular(15),
+                                            ),
+                                            width: 300,
+                                            height: 400,
+                                            child: Center(
+                                              child: Text(
+                                                flashcard.question,
+                                                style: const TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 24),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
                                       ),
-                                      borderRadius: BorderRadius.circular(15),
-                                    ),
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                        color:
-                                            Colors.deepPurple.withOpacity(0.5),
-                                        borderRadius: BorderRadius.circular(15),
-                                      ),
-                                      width: 300,
-                                      height: 400,
-                                      child: Center(
-                                        child: Text(
-                                          decks[selectedDeck]![currentIndex]
-                                              .question,
-                                          style: const TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 24),
+                                      back: Card(
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(15),
+                                        ),
+                                        elevation: 8,
+                                        shadowColor: Colors.black54,
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            image: const DecorationImage(
+                                              image:
+                                                  AssetImage('assets/bg3.webp'),
+                                              fit: BoxFit.cover,
+                                            ),
+                                            borderRadius:
+                                                BorderRadius.circular(15),
+                                          ),
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                              color: Colors.deepPurple
+                                                  .withOpacity(0.5),
+                                              borderRadius:
+                                                  BorderRadius.circular(15),
+                                            ),
+                                            width: 300,
+                                            height: 400,
+                                            child: Center(
+                                              child: Text(
+                                                flashcard.answer,
+                                                style: const TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 24),
+                                              ),
+                                            ),
+                                          ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                ),
-                                back: Card(
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(15),
-                                  ),
-                                  elevation: 8,
-                                  shadowColor: Colors.black54,
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      image: const DecorationImage(
-                                        image: AssetImage('assets/bg3.webp'),
-                                        fit: BoxFit.cover,
-                                      ),
-                                      borderRadius: BorderRadius.circular(15),
-                                    ),
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                        color:
-                                            Colors.deepPurple.withOpacity(0.5),
-                                        borderRadius: BorderRadius.circular(15),
-                                      ),
-                                      width: 300,
-                                      height: 400,
-                                      child: Center(
-                                        child: Text(
-                                          decks[selectedDeck]![currentIndex]
-                                              .answer,
-                                          style: const TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 24),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                    ),
+                                  );
+                                })),
                     Container(
                       child: decks[selectedDeck]!.isEmpty
                           ? const SizedBox(height: 20)
@@ -251,7 +269,18 @@ class _FlashcardScreenState extends State<FlashcardScreen> {
                                     shadowColor: Colors.black,
                                     elevation: 5,
                                   ),
-                                  onPressed: _nextFlashcard,
+                                  onPressed: () {
+                                    _markFlashcardAsKnown(
+                                        selectedDeck!,
+                                        decks[selectedDeck]![
+                                            _pageController.page!.toInt()]);
+                                    if (decks[selectedDeck]!.isNotEmpty) {
+                                      _pageController.nextPage(
+                                          duration:
+                                              const Duration(milliseconds: 300),
+                                          curve: Curves.easeIn);
+                                    }
+                                  },
                                   child: const Text(
                                     'I Know',
                                     style: TextStyle(
@@ -272,7 +301,12 @@ class _FlashcardScreenState extends State<FlashcardScreen> {
                                     shadowColor: Colors.black,
                                     elevation: 5,
                                   ),
-                                  onPressed: _nextFlashcard,
+                                  onPressed: () {
+                                    _pageController.nextPage(
+                                        duration:
+                                            const Duration(milliseconds: 300),
+                                        curve: Curves.easeIn);
+                                  },
                                   child: const Text(
                                     'Review Tomorrow',
                                     style: TextStyle(
@@ -293,7 +327,12 @@ class _FlashcardScreenState extends State<FlashcardScreen> {
                                     shadowColor: Colors.black,
                                     elevation: 5,
                                   ),
-                                  onPressed: _nextFlashcard,
+                                  onPressed: () {
+                                    _pageController.nextPage(
+                                        duration:
+                                            const Duration(milliseconds: 300),
+                                        curve: Curves.easeIn);
+                                  },
                                   child: const Text(
                                     'Review Later',
                                     style: TextStyle(
@@ -309,7 +348,6 @@ class _FlashcardScreenState extends State<FlashcardScreen> {
                     const SizedBox(height: 20),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      
                       children: [
                         AddFlashcardWidget(
                             deckName: selectedDeck!,
