@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 class FlashcardActions extends StatelessWidget {
   final VoidCallback onKnownPressed;
   final VoidCallback onReviewPressed;
+  final VoidCallback onLearnPressed;
 
   const FlashcardActions({
     required this.onKnownPressed,
     required this.onReviewPressed,
+    required this.onLearnPressed,
     Key? key,
   }) : super(key: key);
 
@@ -22,20 +24,29 @@ class FlashcardActions extends StatelessWidget {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20),
               ),
-              backgroundColor: Colors.blueAccent,
+              backgroundColor: Colors.lightGreen,
               shadowColor: Colors.black,
               elevation: 5,
             ),
             onPressed: onKnownPressed,
-            child: const Text(
-              'I Know',
-              style: TextStyle(
-                fontSize: 10,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),
+            child: const Column(
+              children: [
+                Icon(Icons.check, color: Colors.white),
+                SizedBox(
+                  height: 5,
+                ),
+                Text(
+                  'I Know',
+                  style: TextStyle(
+                    fontSize: 10,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                ),
+              ],
             ),
           ),
+          SizedBox(width: 10),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
@@ -47,15 +58,24 @@ class FlashcardActions extends StatelessWidget {
               elevation: 5,
             ),
             onPressed: onReviewPressed,
-            child: const Text(
-              'Review Tomorrow',
-              style: TextStyle(
-                fontSize: 10,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),
+             child: const Column(
+              children: [
+                Icon(Icons.schedule, color: Colors.white),
+                SizedBox(
+                  height: 5,
+                ),
+                Text(
+                  'Review',
+                  style: TextStyle(
+                    fontSize: 10,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                ),
+              ],
             ),
           ),
+          SizedBox(width: 10),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
@@ -67,13 +87,21 @@ class FlashcardActions extends StatelessWidget {
               elevation: 5,
             ),
             onPressed: onReviewPressed,
-            child: const Text(
-              'Review Later',
-              style: TextStyle(
-                fontSize: 10,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),
+             child: const Column(
+              children: [
+                Icon(Icons.book, color: Colors.white),
+                SizedBox(
+                  height: 5,
+                ),
+                Text(
+                  'Learn',
+                  style: TextStyle(
+                    fontSize: 10,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                ),
+              ],
             ),
           ),
         ],

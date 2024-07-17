@@ -164,9 +164,12 @@ class _FlashcardScreenState extends State<FlashcardScreen> {
             _pageController.nextPage(
                 duration: const Duration(milliseconds: 300),
                 curve: Curves.easeIn);
-          },
+          }, 
+          onLearnPressed: () { 
+            // to do: add learn functionality
+           },
         ),
-        const SizedBox(height: 20),
+        const SizedBox(height: 80),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
