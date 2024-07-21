@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:language_app/features/home/widgets/deck_list_tile.dart';
-import 'package:language_app/features/home/widgets/flashcard_actions.dart';
-import 'package:language_app/features/home/widgets/flashcard_view.dart';
+import 'package:language_app/widgets/deck_list_tile.dart';
+import 'package:language_app/widgets/flashcard_actions.dart';
+import 'package:language_app/widgets/flashcard_view.dart';
 
 import 'package:provider/provider.dart';
 import 'package:language_app/core/services/auth_service.dart';
 import '../../widgets/add_flashcard_widget.dart';
 import '../../widgets/create_deck_widget.dart';
-// import 'package:language_app/features/home/presentation/pages/flashcard_detail_screen.dart';
-import 'package:language_app/features/home/widgets/search_widget.dart';
+// import 'package:language_app/screens/flashcard_detail_screen.dart';
+import 'package:language_app/widgets/search_widget.dart';
 import 'package:language_app/core/models/flashcard.dart';
-import 'package:language_app/features/home/widgets/deck_list_header.dart';
+import 'package:language_app/widgets/deck_list_header.dart';
 
 class FlashcardScreen extends StatefulWidget {
   const FlashcardScreen({super.key});

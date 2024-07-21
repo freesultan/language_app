@@ -72,6 +72,7 @@ flutter:
     - assets/bg3.webp
     - assets/bg4.webp
     - assets/flesh.json
+    - assets/dot_pattern.avif
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

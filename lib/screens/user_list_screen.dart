@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:language_app/core/services/auth_service.dart';
 import 'package:provider/provider.dart';
 import 'package:language_app/core/models/user.dart';
-import 'package:language_app/features/home/widgets/decklist_widget.dart';
+import 'package:language_app/widgets/decklist_widget.dart';
 
 class UserListScreen extends StatefulWidget {
   const UserListScreen({super.key});

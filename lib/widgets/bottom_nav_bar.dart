@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:language_app/features/home/presentation/pages/flashcard_screen.dart';
-import 'package:language_app/features/home/presentation/pages/home_screen.dart';
-import 'package:language_app/features/home/presentation/pages/lesson_screen.dart';
+import 'package:language_app/screens/flashcard_screen.dart';
+import 'package:language_app/screens/home_screen.dart';
+import 'package:language_app/screens/lesson_screen.dart';
 
 class BottomNavBar extends StatelessWidget {
   const BottomNavBar({super.key});

@@ -6,10 +6,11 @@ import 'core/models/lesson.dart';
 import 'core/models/flashcard.dart';
 
 import 'package:language_app/core/services/lesson_providor.dart';
-import 'package:language_app/features/home/presentation/pages/home_screen.dart';
+import 'package:language_app/screens/home_screen.dart';
 import 'package:provider/provider.dart';
 
-import 'package:google_fonts/google_fonts.dart';
+ 
+import 'package:language_app/themes/app_theme.dart';
 
 void main() async {
   await Hive.initFlutter();
@@ -46,12 +47,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'learning app',
-      theme: ThemeData(
-        textTheme: GoogleFonts.latoTextTheme(
-          Theme.of(context).textTheme,
-        ),
-        primarySwatch: Colors.blue,
-      ),
+      theme: AppTheme.themeData,
       home: const HomeScreen(),
     );
   }
