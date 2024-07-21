@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:language_app/themes/app_theme.dart';
 import 'package:provider/provider.dart';
 import '../../../../core/services/auth_service.dart';
 import 'package:language_app/screens/home_screen.dart';
@@ -11,41 +12,16 @@ class RegisterScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Scaffold(  
+              backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         appBar: AppBar(
           title: const Text('Register'),
-          backgroundColor: Colors.transparent,
+          backgroundColor: Theme.of(context).colorScheme.primary,
+          foregroundColor: Theme.of(context).colorScheme.onPrimary,
           elevation: 0,
-          flexibleSpace: Container(
-            decoration: BoxDecoration(
-              gradient: const LinearGradient(
-                colors: [
-                  Colors.blueAccent,
-                  Colors.lightBlue,
-                  Colors.lightBlueAccent
-                ],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-              ),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.5),
-                  spreadRadius: 2,
-                  blurRadius: 8,
-                  offset: const Offset(2, 4),
-                ),
-              ],
-            ),
-          ),
         ),
-        body: Container(
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage('assets/bg4.webp'),
-              fit: BoxFit.cover,
-            ),
-          ),
-          child: Center(
+        body:
+           Center(
             child: Padding(
               padding: const EdgeInsets.all(16.0),
               child: SingleChildScrollView(
@@ -58,13 +34,9 @@ class RegisterScreen extends StatelessWidget {
                     padding: const EdgeInsets.all(16.0),
                     child: Column(
                       children: [
-                        const Text(
+                         Text(
                           'Register Please',
-                          style: TextStyle(
-                            fontSize: 24,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.blueAccent,
-                          ),
+                          style: Theme.of(context).textTheme.bodySmall,
                         ),
                         const SizedBox(height: 20),
                         TextField(
@@ -95,11 +67,12 @@ class RegisterScreen extends StatelessWidget {
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10),
                             ),
-                            textStyle: const TextStyle(
+                            textStyle:  TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.bold,
                             ),
-                            backgroundColor: Colors.blueAccent,
+                            backgroundColor: Theme.of(context).colorScheme.surface,
+                            foregroundColor: Theme.of(context).colorScheme.onSurface,
                           ),
                           onPressed: () {
                             final username = _usernameController.text;
@@ -132,6 +105,6 @@ class RegisterScreen extends StatelessWidget {
               ),
             ),
           ),
-        ));
+        );
   }
 }

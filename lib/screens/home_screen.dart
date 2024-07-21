@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:language_app/screens/user_list_screen.dart';
+import 'package:language_app/themes/app_theme.dart';
 import '../../widgets/daily_lesson_widget.dart';
 import '../../widgets/bottom_nav_bar.dart';
 import 'package:provider/provider.dart';
@@ -22,10 +23,10 @@ class HomeScreen extends StatelessWidget {
     final authService = Provider.of<AuthService>(context);
     final currentUser = authService.currentUser;
 
-    final colorScheme = Theme.of(context).colorScheme;
+    
 
     return Scaffold(
-      backgroundColor: colorScheme.secondary,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: _buildAppBar(context),
       body: Center(
         child: currentUser != null
@@ -51,22 +52,19 @@ class HomeScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 20),
                   Card(
-                    color: Colors.lightBlue[50],
+                    color: Theme.of(context).colorScheme.secondary,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10)),
                     elevation: 10,
-                    child: const Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Text(
-                        'Welcome to Language Learning App',
-                        style: TextStyle(
-                          color: Colors.blueAccent,
-                          fontSize: 10,
-                          fontWeight: FontWeight.bold,
+                    child:  Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          'Welcome to Language Learning App',
+                          style: Theme.of(context).textTheme.bodySmall,
+                          textAlign: TextAlign.center,
                         ),
-                        textAlign: TextAlign.center,
                       ),
-                    ),
+                    
                   ),
                   const SizedBox(height: 40),
                   Row(
@@ -78,11 +76,7 @@ class HomeScreen extends StatelessWidget {
                           color: Colors.greenAccent,
                           borderRadius: BorderRadius.circular(8),
                         ),
-                        textStyle: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                        ),
+                        textStyle: Theme.of(context).textTheme.bodySmall,
                         padding: const EdgeInsets.all(10),
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
@@ -109,11 +103,7 @@ class HomeScreen extends StatelessWidget {
                           color: Colors.greenAccent,
                           borderRadius: BorderRadius.circular(8),
                         ),
-                        textStyle: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                        ),
+                        textStyle: Theme.of(context).textTheme.bodySmall,
                         padding: const EdgeInsets.all(10),
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
@@ -140,11 +130,7 @@ class HomeScreen extends StatelessWidget {
                           color: Colors.greenAccent,
                           borderRadius: BorderRadius.circular(8),
                         ),
-                        textStyle: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                        ),
+                        textStyle: Theme.of(context).textTheme.bodySmall,
                         padding: const EdgeInsets.all(10),
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(

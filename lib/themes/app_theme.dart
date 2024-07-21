@@ -5,8 +5,8 @@ class AppTheme {
   static final ThemeData themeData = ThemeData(
     colorScheme: ColorScheme.fromSeed(
       seedColor: Color(0xFF1A5F7A),
-      primary: Color(0xFF1A5F7A),
-      secondary: Color(0xFFF79327),
+      primary: Color.fromARGB(255, 164, 203, 218),
+      secondary: Color.fromARGB(255, 232, 163, 89),
       surface: Colors.white,
       onPrimary: Colors.white,
       onSecondary: Colors.white,
@@ -21,6 +21,10 @@ class AppTheme {
       ),
       bodyMedium: GoogleFonts.openSans(
         fontSize: 16,
+        color: Color(0xFF333333),
+      ),
+      bodySmall: GoogleFonts.roboto(
+        fontSize: 14,
         color: Color(0xFF333333),
       ),
       labelLarge: GoogleFonts.roboto(
@@ -53,7 +57,7 @@ class AppTheme {
     color: Colors.white,
     backgroundBlendMode: BlendMode.difference,
     image: DecorationImage(
-      image: AssetImage('assets/dot_pattern.avif'),
+      image: AssetImage('assets/dot_pattern.png'),
       repeat: ImageRepeat.repeat,
     ),
   );
