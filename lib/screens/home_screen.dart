@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:language_app/screens/user_list_screen.dart';
-import 'package:language_app/themes/app_theme.dart';
 import '../../widgets/daily_lesson_widget.dart';
 import '../../widgets/bottom_nav_bar.dart';
 import 'package:provider/provider.dart';
@@ -23,11 +22,11 @@ class HomeScreen extends StatelessWidget {
     final authService = Provider.of<AuthService>(context);
     final currentUser = authService.currentUser;
 
-    
-
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: _buildAppBar(context),
+      drawer: _buildLeftDrawer(context),
+      endDrawer: _buildRightDrawer(context),
       body: Center(
         child: currentUser != null
             ? Padding(
@@ -56,15 +55,14 @@ class HomeScreen extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10)),
                     elevation: 10,
-                    child:  Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          'Welcome to Language Learning App',
-                          style: Theme.of(context).textTheme.bodySmall,
-                          textAlign: TextAlign.center,
-                        ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        'Welcome to Language Learning App',
+                        style: Theme.of(context).textTheme.bodySmall,
+                        textAlign: TextAlign.center,
                       ),
-                    
+                    ),
                   ),
                   const SizedBox(height: 40),
                   Row(
@@ -161,7 +159,7 @@ class HomeScreen extends StatelessWidget {
 
 PreferredSizeWidget? _buildAppBar(BuildContext context) {
   final authService = Provider.of<AuthService>(context);
-    final colorScheme = Theme.of(context).colorScheme;
+  final colorScheme = Theme.of(context).colorScheme;
 
   if (authService.currentUser != null) {
     return AppBar(
@@ -169,7 +167,6 @@ PreferredSizeWidget? _buildAppBar(BuildContext context) {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text('Hello, ${authService.currentUser!.username}'),
-          
           IconButton(
             icon: const Icon(Icons.logout),
             onPressed: () {
@@ -184,8 +181,133 @@ PreferredSizeWidget? _buildAppBar(BuildContext context) {
       ),
       backgroundColor: colorScheme.primary,
       elevation: 10,
-     
+    );
+  } else {
+    return AppBar(
+      title: const Text('LangStar'),
+      backgroundColor: colorScheme.secondary,
+      elevation: 10,
+      leading: Builder(
+        builder: (context) => IconButton(
+          icon: const Icon(Icons.menu),
+          onPressed: () {
+            Scaffold.of(context).openDrawer();
+          },
+        ),
+      ),
+      actions: [
+        IconButton(
+          icon: const Icon(Icons.ads_click),
+          onPressed: () {
+            showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return AlertDialog(
+                  title: const Text('Information'),
+                  content: Card(
+                    color: Theme.of(context).cardColor,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10)),
+                    elevation: 10,
+                    child: const Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Text(
+                        'This is a language learning app.',
+                        style: TextStyle(fontSize: 16),
+                      ),
+                    ),
+                  ),
+                  actions: [
+                    TextButton(
+                      child: const Text('Close'),
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                    ),
+                  ],
+                );
+              },
+            );
+          },
+        ),
+      ],
     );
   }
-  return null;
+
 }
+
+ Drawer _buildLeftDrawer(BuildContext context) {
+    return Drawer(
+      child: ListView(
+        padding: EdgeInsets.zero,
+        children: <Widget>[
+          DrawerHeader(
+            decoration: BoxDecoration(
+              color: Theme.of(context).colorScheme.primary,
+            ),
+            child: const Text(
+              'Menu',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 24,
+              ),
+            ),
+          ),
+          ListTile(
+            leading: const Icon(Icons.person_add),
+            title: const Text('Sign up'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => RegisterScreen()),
+              );
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.support),
+            title: const Text('Support'),
+            onTap: () {
+              // Handle support action
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.info),
+            title: const Text('About Us'),
+            onTap: () {
+              // Handle about us action
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.settings),
+            title: const Text('Preferences'),
+            onTap: () {
+              // Handle preferences action
+            },
+          ),
+        ],
+      ),
+    );
+  }
+
+  Drawer _buildRightDrawer(BuildContext context) {
+    return Drawer(
+      child: ListView(
+        padding: EdgeInsets.zero,
+        children: <Widget>[
+          DrawerHeader(
+            decoration: BoxDecoration(
+              color: Theme.of(context).colorScheme.secondary,
+            ),
+            child: const Text(
+              'Settings',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 24,
+              ),
+            ),
+          ),
+          // Add more items to the right drawer if needed
+        ],
+      ),
+    );
+  }
