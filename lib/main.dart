@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:language_app/screens/loading_screen.dart';
 import 'core/services/auth_service.dart';
 import 'core/models/user.dart';
 import 'core/models/lesson.dart';
@@ -48,7 +49,35 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'learning app',
       theme: AppTheme.themeData,
-      home: const HomeScreen(),
+      home: const SplashScreen(),
     );
+  }
+}
+
+class SplashScreen extends StatefulWidget {
+  const SplashScreen({Key? key}) : super(key: key);
+
+  @override
+  _SplashScreenState createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+  @override
+  void initState() {
+    super.initState();
+    _navigateToHome();
+  }
+
+  _navigateToHome() async {
+    await Future.delayed(const Duration(milliseconds: 10000), () {});
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => const HomeScreen()),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return const LoadingScreen();
   }
 }

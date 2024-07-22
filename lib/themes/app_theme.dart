@@ -5,29 +5,33 @@ class AppTheme {
   static final ThemeData themeData = ThemeData(
     colorScheme: ColorScheme.fromSeed(
       seedColor: Color(0xFF1A5F7A),
-      primary: Color.fromARGB(255, 164, 203, 218),
+      primary: Color.fromARGB(255, 1, 216, 231),
       secondary: Color.fromARGB(255, 232, 163, 89),
       surface: Colors.white,
       onPrimary: Colors.white,
       onSecondary: Colors.white,
       onSurface: Color(0xFF333333),
     ),
-    scaffoldBackgroundColor: Color(0xFFF2F2F2),
-    textTheme: TextTheme(
-      displayLarge: GoogleFonts.roboto(
+    scaffoldBackgroundColor: Color.fromARGB(255, 178, 187, 190),
+    textTheme: const TextTheme(
+      displayLarge: TextStyle(
+        fontFamily: 'Roboto',
         fontSize: 24,
         fontWeight: FontWeight.bold,
         color: Color(0xFF333333),
       ),
-      bodyMedium: GoogleFonts.openSans(
+      bodyMedium: TextStyle(
+        fontFamily: 'OpenSans',
         fontSize: 16,
         color: Color(0xFF333333),
       ),
-      bodySmall: GoogleFonts.roboto(
+      bodySmall: TextStyle(
+        fontFamily: 'Roboto',
         fontSize: 14,
         color: Color(0xFF333333),
       ),
-      labelLarge: GoogleFonts.roboto(
+      labelLarge: TextStyle(
+        fontFamily: 'Roboto',
         fontSize: 18,
         fontWeight: FontWeight.w500,
         color: Colors.white,
