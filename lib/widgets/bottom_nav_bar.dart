@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:language_app/screens/flashcard_screen.dart';
-import 'package:language_app/screens/home_screen.dart';
-import 'package:language_app/screens/lesson_screen.dart';
-
+ import 'package:language_app/screens/home_screen.dart';
+ 
 class BottomNavBar extends StatelessWidget {
   const BottomNavBar({super.key});
 
@@ -33,13 +31,13 @@ class BottomNavBar extends StatelessWidget {
             break;
           case 1:
             Navigator.push(context, 
-            MaterialPageRoute(builder: (context) => const LessonScreen(lessonIndex: 0))
+            MaterialPageRoute(builder: (context) => const HomeScreen())
             );
             break;
          case 2:
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) =>  const FlashcardScreen())
+              MaterialPageRoute(builder: (context) =>  const HomeScreen())
               );
             break;
         }

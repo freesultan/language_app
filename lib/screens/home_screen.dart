@@ -1,26 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:language_app/screens/user_list_screen.dart';
-import '../../widgets/daily_lesson_widget.dart';
+import 'package:language_app/screens/auth_screen.dart';
 import '../../widgets/bottom_nav_bar.dart';
+import 'package:language_app/states/user_state.dart'; // Import the UserState class
 import 'package:provider/provider.dart';
-import '../../../../core/services/lesson_providor.dart';
-
-import 'package:language_app/core/services/auth_service.dart';
-import 'package:language_app/screens/login_screen.dart';
-import 'package:language_app/screens/register_screen.dart';
+ 
 
 import 'package:lottie/lottie.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
+    
 
   @override
   Widget build(BuildContext context) {
-    var lessonProvider = Provider.of<LessonProvider>(context);
-    var currentLesson = lessonProvider.lessons.first;
+    final userState = Provider.of<UserState>(context);
 
-    final authService = Provider.of<AuthService>(context);
-    final currentUser = authService.currentUser;
 
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
@@ -28,14 +22,14 @@ class HomeScreen extends StatelessWidget {
       drawer: _buildLeftDrawer(context),
       endDrawer: _buildRightDrawer(context),
       body: Center(
-        child: currentUser != null
+        child: userState.email != null
             ? Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    DailyLessonWidget(lesson: currentLesson),
-                    const SizedBox(height: 20),
+                    //TODO: add a widget based on the current user
+                     const SizedBox(height: 20),
                     const Spacer(),
                     const BottomNavBar(),
                   ],
@@ -58,98 +52,14 @@ class HomeScreen extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Text(
-                        'Welcome to Language Learning App',
+                        'Welcome to Language Learning App, please sign in',
                         style: Theme.of(context).textTheme.bodySmall,
                         textAlign: TextAlign.center,
                       ),
                     ),
                   ),
                   const SizedBox(height: 40),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Tooltip(
-                        message: 'Register',
-                        decoration: BoxDecoration(
-                          color: Colors.greenAccent,
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        textStyle: Theme.of(context).textTheme.bodySmall,
-                        padding: const EdgeInsets.all(10),
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 15, vertical: 15),
-                            shape: const CircleBorder(),
-                            backgroundColor: Colors.blueAccent,
-                          ),
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => RegisterScreen()),
-                            );
-                          },
-                          child: const Icon(Icons.person_add,
-                              size: 20, color: Colors.white),
-                        ),
-                      ),
-                      // const SizedBox(width: 40),
-                      Tooltip(
-                        message: 'Login',
-                        decoration: BoxDecoration(
-                          color: Colors.greenAccent,
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        textStyle: Theme.of(context).textTheme.bodySmall,
-                        padding: const EdgeInsets.all(10),
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 15, vertical: 15),
-                            shape: const CircleBorder(),
-                            backgroundColor: Colors.greenAccent,
-                          ),
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => LoginScreen()),
-                            );
-                          },
-                          child: const Icon(Icons.login,
-                              size: 20, color: Colors.white),
-                        ),
-                      ),
-                      // const SizedBox(width: 40),
-                      Tooltip(
-                        message: 'Users List',
-                        decoration: BoxDecoration(
-                          color: Colors.greenAccent,
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        textStyle: Theme.of(context).textTheme.bodySmall,
-                        padding: const EdgeInsets.all(10),
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 15, vertical: 15),
-                            shape: const CircleBorder(),
-                            backgroundColor: Colors.purpleAccent,
-                          ),
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const UserListScreen()),
-                            );
-                          },
-                          child: const Icon(Icons.person,
-                              size: 20, color: Colors.white),
-                        ),
-                      )
-                    ],
-                  ),
+                  
                 ],
               ),
       ),
@@ -158,19 +68,19 @@ class HomeScreen extends StatelessWidget {
 }
 
 PreferredSizeWidget? _buildAppBar(BuildContext context) {
-  final authService = Provider.of<AuthService>(context);
-  final colorScheme = Theme.of(context).colorScheme;
+   final colorScheme = Theme.of(context).colorScheme;
+     final userState = Provider.of<UserState>(context);
 
-  if (authService.currentUser != null) {
+  if ( userState.email != null) {
     return AppBar(
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text('Hello, ${authService.currentUser!.username}'),
+          Text('Hello, ${userState!.username}'),
           IconButton(
             icon: const Icon(Icons.logout),
             onPressed: () {
-              authService.logout();
+              userState.logout();
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(builder: (context) => const HomeScreen()),
@@ -259,7 +169,7 @@ PreferredSizeWidget? _buildAppBar(BuildContext context) {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => RegisterScreen()),
+                MaterialPageRoute(builder: (context) => AuthScreen()),
               );
             },
           ),

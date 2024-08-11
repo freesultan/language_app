@@ -1,43 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:hive_flutter/hive_flutter.dart';
-import 'package:language_app/screens/loading_screen.dart';
-import 'core/services/auth_service.dart';
-import 'core/models/user.dart';
-import 'core/models/lesson.dart';
-import 'core/models/flashcard.dart';
-
-import 'package:language_app/core/services/lesson_providor.dart';
+import 'package:language_app/screens/auth_screen.dart';
 import 'package:language_app/screens/home_screen.dart';
+import 'package:language_app/screens/loading_screen.dart';
+import 'package:language_app/states/user_state.dart'; // Import the UserState class
 import 'package:provider/provider.dart';
 
- 
 import 'package:language_app/themes/app_theme.dart';
 
 void main() async {
-  await Hive.initFlutter();
+  WidgetsFlutterBinding.ensureInitialized();
 
-  if (!Hive.isAdapterRegistered(0)) {
-    Hive.registerAdapter(UserAdapter());
-  }
-  if (!Hive.isAdapterRegistered(1)) {
-    Hive.registerAdapter(LessonAdapter());
-  }
-  if (!Hive.isAdapterRegistered(2)) {
-    Hive.registerAdapter(FlashcardAdapter());
-  }
-  await Hive.openBox<User>('users');
-  await Hive.openBox<Lesson>('lessons');
-  await Hive.openBox('flashcards');
-
-  runApp(
-    MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (_) => LessonProvider()),
-        ChangeNotifierProvider(create: (_) => AuthService()),
-      ],
-      child: const MyApp(),
-    ),
-  );
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -45,12 +18,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'learning app',
-      theme: AppTheme.themeData,
-      home: const SplashScreen(),
-    );
+    return ChangeNotifierProvider(
+        create: (context) => UserState(),
+        child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'learning app',
+          theme: AppTheme.themeData,
+          home: const SplashScreen(),
+        ));
   }
 }
 
@@ -69,11 +44,22 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   _navigateToHome() async {
-    await Future.delayed(const Duration(milliseconds: 10000), () {});
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(builder: (context) => const HomeScreen()),
-    );
+    await Future.delayed(const Duration(milliseconds: 2000), () {});
+
+    // Check if user is logged in
+    final userState = Provider.of<UserState>(context, listen: false);
+
+    if (userState.isLoggedIn) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const HomeScreen()),
+      );
+    } else {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const AuthScreen()),
+      );
+    }
   }
 
   @override
