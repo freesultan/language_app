@@ -147,22 +147,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.2.1"
-  google_sign_in:
-    dependency: "direct main"
-    description:
-      name: google_sign_in
-      sha256: "2608b2b9d641475c742c2e1343461032633309de079146585e647b2422c9c417"
-      url: "https://pub.dev"
-    source: hosted
-    version: "5.0.0-nullsafety"
-  google_sign_in_platform_interface:
-    dependency: transitive
-    description:
-      name: google_sign_in_platform_interface
-      sha256: "1f6e5787d7a120cc0359ddf315c92309069171306242e181c09472d1b00a2971"
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.4.5"
   http:
     dependency: "direct main"
     description:
