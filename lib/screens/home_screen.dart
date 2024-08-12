@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:language_app/screens/auth_screen.dart';
+import 'package:language_app/screens/profile_screen.dart';
 import '../../widgets/bottom_nav_bar.dart';
 import 'package:language_app/states/user_state.dart'; // Import the UserState class
 import 'package:provider/provider.dart';
- 
 
 import 'package:lottie/lottie.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
-    
 
   @override
   Widget build(BuildContext context) {
     final userState = Provider.of<UserState>(context);
-
 
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
@@ -29,7 +28,7 @@ class HomeScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     //TODO: add a widget based on the current user
-                     const SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     const Spacer(),
                     const BottomNavBar(),
                   ],
@@ -59,7 +58,6 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 40),
-                  
                 ],
               ),
       ),
@@ -68,15 +66,15 @@ class HomeScreen extends StatelessWidget {
 }
 
 PreferredSizeWidget? _buildAppBar(BuildContext context) {
-   final colorScheme = Theme.of(context).colorScheme;
-     final userState = Provider.of<UserState>(context);
+  final colorScheme = Theme.of(context).colorScheme;
+  final userState = Provider.of<UserState>(context);
 
-  if ( userState.email != null) {
+  if (userState.email != null) {
     return AppBar(
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text('Hello, ${userState!.username}'),
+          Text('Hello, ${userState.username}'),
           IconButton(
             icon: const Icon(Icons.logout),
             onPressed: () {
@@ -143,26 +141,57 @@ PreferredSizeWidget? _buildAppBar(BuildContext context) {
       ],
     );
   }
-
 }
 
- Drawer _buildLeftDrawer(BuildContext context) {
-    return Drawer(
-      child: ListView(
-        padding: EdgeInsets.zero,
-        children: <Widget>[
-          DrawerHeader(
-            decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.primary,
-            ),
-            child: const Text(
-              'Menu',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 24,
-              ),
-            ),
+Drawer _buildLeftDrawer(BuildContext context) {
+  final userState = Provider.of<UserState>(context);
+
+  return Drawer(
+    width: 200,
+    child: ListView(
+      padding: EdgeInsets.zero,
+      children: <Widget>[
+        DrawerHeader(
+          decoration: BoxDecoration(
+            color: Theme.of(context).colorScheme.primary,
           ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Flexible(
+                child: Image.asset(
+                  'assets/logo.png',
+                  height: 100, // Reduced height to fit better
+                ),
+              ),
+              const SizedBox(height: 10),
+              RichText(
+                text: const TextSpan(
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white, // Default color for other letters
+                  ),
+                  children: [
+                    TextSpan(
+                      text: 'L',
+                      style: TextStyle(
+                          color: Colors.purple), // Purple color for "L"
+                    ),
+                    TextSpan(text: 'ang'),
+                    TextSpan(
+                      text: 'S',
+                      style: TextStyle(
+                          color: Colors.purple), // Purple color for "S"
+                    ),
+                    TextSpan(text: 'tar'),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+        if (userState.email == null)
           ListTile(
             leading: const Icon(Icons.person_add),
             title: const Text('Sign up'),
@@ -173,51 +202,62 @@ PreferredSizeWidget? _buildAppBar(BuildContext context) {
               );
             },
           ),
+        if (userState.email != null)
           ListTile(
-            leading: const Icon(Icons.support),
-            title: const Text('Support'),
+            leading: const Icon(Icons.person),
+            title: const Text('Profile'),
             onTap: () {
-              // Handle support action
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ProfileScreen()),
+              );
             },
           ),
-          ListTile(
-            leading: const Icon(Icons.info),
-            title: const Text('About Us'),
-            onTap: () {
-              // Handle about us action
-            },
-          ),
-          ListTile(
-            leading: const Icon(Icons.settings),
-            title: const Text('Preferences'),
-            onTap: () {
-              // Handle preferences action
-            },
-          ),
-        ],
-      ),
-    );
-  }
+        ListTile(
+          leading: const Icon(Icons.support),
+          title: const Text('Support'),
+          onTap: () {
+            // Handle support action
+          },
+        ),
+        ListTile(
+          leading: const Icon(Icons.info),
+          title: const Text('About Us'),
+          onTap: () {
+            // Handle about us action
+          },
+        ),
+        ListTile(
+          leading: const Icon(Icons.settings),
+          title: const Text('Preferences'),
+          onTap: () {
+            // Handle preferences action
+          },
+        ),
+      ],
+    ),
+  );
+}
 
-  Drawer _buildRightDrawer(BuildContext context) {
-    return Drawer(
-      child: ListView(
-        padding: EdgeInsets.zero,
-        children: <Widget>[
-          DrawerHeader(
-            decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.secondary,
-            ),
-            child: const Text(
-              'Settings',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 24,
-              ),
+Drawer _buildRightDrawer(BuildContext context) {
+  return Drawer(
+    child: ListView(
+      padding: EdgeInsets.zero,
+      children: <Widget>[
+        DrawerHeader(
+          decoration: BoxDecoration(
+            color: Theme.of(context).colorScheme.secondary,
+          ),
+          child: const Text(
+            'Settings',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 24,
             ),
           ),
-          // Add more items to the right drawer if needed
-        ],
-      ),
-    );
-  }
+        ),
+        // Add more items to the right drawer if needed
+      ],
+    ),
+  );
+}
