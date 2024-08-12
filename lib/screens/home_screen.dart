@@ -74,7 +74,10 @@ PreferredSizeWidget? _buildAppBar(BuildContext context) {
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text('Hello, ${userState.username}'),
+          Text('Hello, ${userState.username}', 
+          style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
+
+          ),
           IconButton(
             icon: const Icon(Icons.logout),
             onPressed: () {
@@ -241,6 +244,7 @@ Drawer _buildLeftDrawer(BuildContext context) {
 
 Drawer _buildRightDrawer(BuildContext context) {
   return Drawer(
+    width: 200,
     child: ListView(
       padding: EdgeInsets.zero,
       children: <Widget>[

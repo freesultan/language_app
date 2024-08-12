@@ -18,10 +18,15 @@ class _LoginWidgetState extends State<LoginWidget> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
+   bool _isloading = false;
+
   Future _login() async {
     String email = _emailController.text;
     String password = _passwordController.text;
 
+    setState(() {
+      _isloading = true;
+    });
     
       var response = await http.post(
         Uri.parse('http://146.70.158.243/login'),
@@ -44,6 +49,10 @@ class _LoginWidgetState extends State<LoginWidget> {
         print('Login failed');
         // Show error message
       }
+
+      setState(() {
+        _isloading = false;
+      });
    
   }
 
@@ -80,7 +89,8 @@ class _LoginWidgetState extends State<LoginWidget> {
           alignment: Alignment.centerRight,
           child: TextButton(
             onPressed: () {},
-            child: Text('Forgot Password?'),
+            child: const Text('Forgot Password?',
+            style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500),),
           ),
         ),
         SizedBox(height: 16.0),
@@ -92,12 +102,25 @@ class _LoginWidgetState extends State<LoginWidget> {
               borderRadius: BorderRadius.circular(10.0),
             ),
           ),
-          child: Text('Login'),
+          child: _isloading
+           ? const SizedBox(
+                  height: 20.0,
+                  width: 20.0,
+                  child: CircularProgressIndicator(
+                    valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                    strokeWidth: 2.0,
+                  ),
+                )
+           : 
+           Text('Login'),
         ),
         SizedBox(height: 16.0),
         TextButton(
           onPressed: widget.onToggle,
-          child: Text('Don\'t have an account? Sign Up'),
+          child: const Text(
+            'Don\'t have an account? Sign Up',
+             style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
+            ),
         ),
       ],
     );

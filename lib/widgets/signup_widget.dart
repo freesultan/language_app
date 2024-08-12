@@ -120,7 +120,10 @@ class _SignupWidgetState extends State<SignupWidget> {
         SizedBox(height: 16),
         TextButton(
           onPressed: widget.onToggle,
-          child: Text('Already have an account? Login'),
+          child: const Text('Already have an account? Login',
+          style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500)
+          ),
+          
         ),
       ],
     );
