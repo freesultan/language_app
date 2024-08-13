@@ -80,7 +80,7 @@ PreferredSizeWidget? _buildAppBar(BuildContext context) {
           IconButton(
             icon: const Icon(Icons.logout),
             onPressed: () {
-              userState.logout();
+              userState.clearUser();
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(builder: (context) => const HomeScreen()),
@@ -95,7 +95,7 @@ PreferredSizeWidget? _buildAppBar(BuildContext context) {
   } else {
     return AppBar(
       title: const Text('LangStar'),
-      backgroundColor: colorScheme.secondary,
+      backgroundColor: colorScheme.primary,
       elevation: 10,
       leading: Builder(
         builder: (context) => IconButton(

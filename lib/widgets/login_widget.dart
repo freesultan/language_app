@@ -38,7 +38,7 @@ class _LoginWidgetState extends State<LoginWidget> {
           final userData = jsonDecode(response.body);
 
           // Update user state
-        Provider.of<UserState>(context, listen: false).login(userData['email'], email);
+        Provider.of<UserState>(context, listen: false).setUser(userData['email'], email);
 
         // Navigate to home screen
         Navigator.pushReplacement(

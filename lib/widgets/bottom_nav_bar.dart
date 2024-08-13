@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:language_app/screens/flashcards_screen.dart';
  import 'package:language_app/screens/home_screen.dart';
  
 class BottomNavBar extends StatelessWidget {
@@ -37,7 +38,7 @@ class BottomNavBar extends StatelessWidget {
          case 2:
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) =>  const HomeScreen())
+              MaterialPageRoute(builder: (context) =>  FlashcardScreen())
               );
             break;
         }
