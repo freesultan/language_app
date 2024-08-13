@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:language_app/screens/auth_screen.dart';
 import 'package:language_app/screens/profile_screen.dart';
 import '../../widgets/bottom_nav_bar.dart';

@@ -1,42 +1,51 @@
 import 'package:flutter/material.dart';
+import 'package:language_app/states/user_state.dart'; // Import the UserState class
+
+import 'package:provider/provider.dart';
 
 class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({super.key});
-
   @override
   Widget build(BuildContext context) {
+    final userState = Provider.of<UserState>(context);
+    
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Profile'),
+      backgroundColor: Theme.of(context).colorScheme.primary,
+      elevation: 10,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
+      body: Container(
+        padding: EdgeInsets.all(16.0),
+        color: Theme.of(context).colorScheme.surface,
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text(
-              'Your Progress',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            CircleAvatar(
+              radius: 50,
+              backgroundImage: NetworkImage(userState.avatarUrl),
             ),
-            const SizedBox(height: 10),
-            Container(
-              height: 100,
-              color: Colors.grey[200],
-              child: const Center(
-                child: Text('Progress Details Here'),
+            SizedBox(height: 20),
+            
+            Text(
+              userState.username!,
+              style: Theme.of(context).textTheme.bodyMedium,
+            ),
+            SizedBox(height: 10),
+            Text(
+              userState.email!,
+              style: Theme.of(context).textTheme.bodyMedium,
+            ),
+            SizedBox(height: 30),
+            ElevatedButton(
+              onPressed: () {},
+              style: ElevatedButton.styleFrom(
+                padding: const EdgeInsets.symmetric(
+                    vertical: 14.0, horizontal: 40.0),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
               ),
-            ),
-            const SizedBox(height: 20),
-            const Text(
-              'Achievements',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-            ),
-            Container(
-              height: 100,
-              color: Colors.grey[200],
-              child: const Center(
-                child: Text('Achievement Details Here'),
-              ),
+              child: Text('Edit profile'),
             ),
           ],
         ),
