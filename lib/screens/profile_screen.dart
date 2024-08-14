@@ -14,11 +14,13 @@ class ProfileScreen extends StatelessWidget {
       elevation: 10,
       ),
       body: Container(
+        width: double.infinity,
         padding: EdgeInsets.all(16.0),
         color: Theme.of(context).colorScheme.surface,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
+          
           children: <Widget>[
             CircleAvatar(
               radius: 50,

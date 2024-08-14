@@ -70,62 +70,64 @@ class _SignupWidgetState extends State<SignupWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Text(
-          'Sign Up',
-          style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
-        ),
-        SizedBox(height: 16),
-        TextField(
-          controller: _emailController,
-          decoration: InputDecoration(
-            labelText: 'email',
-            border:
-                OutlineInputBorder(borderRadius: BorderRadius.circular(10.0)),
+    return SingleChildScrollView(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            'Sign Up',
+            style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
           ),
-        ),
-        SizedBox(height: 16),
-        TextField(
-          controller: _passwordController,
-          decoration: InputDecoration(
-            labelText: 'Password',
-            border:
-                OutlineInputBorder(borderRadius: BorderRadius.circular(10.0)),
-          ),
-          obscureText: true,
-        ),
-        SizedBox(height: 16),
-        SizedBox(height: 16),
-        ElevatedButton(
-          onPressed: _signUp,
-           style: ElevatedButton.styleFrom(
-            padding: const EdgeInsets.symmetric(vertical: 14.0, horizontal: 40.0),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10.0),
+          SizedBox(height: 16),
+          TextField(
+            controller: _emailController,
+            decoration: InputDecoration(
+              labelText: 'email',
+              border:
+                  OutlineInputBorder(borderRadius: BorderRadius.circular(10.0)),
             ),
           ),
-          child: _isloading
-              ? const SizedBox(
-                  height: 20.0,
-                  width: 20.0,
-                  child: CircularProgressIndicator(
-                    valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-                    strokeWidth: 2.0,
-                  ),
-                )
-              : Text('Sign Up'),
-        ),
-        SizedBox(height: 16),
-        TextButton(
-          onPressed: widget.onToggle,
-          child: const Text('Already have an account? Login',
-          style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500)
+          SizedBox(height: 16),
+          TextField(
+            controller: _passwordController,
+            decoration: InputDecoration(
+              labelText: 'Password',
+              border:
+                  OutlineInputBorder(borderRadius: BorderRadius.circular(10.0)),
+            ),
+            obscureText: true,
           ),
-          
-        ),
-      ],
+          SizedBox(height: 16),
+          SizedBox(height: 16),
+          ElevatedButton(
+            onPressed: _signUp,
+             style: ElevatedButton.styleFrom(
+              padding: const EdgeInsets.symmetric(vertical: 14.0, horizontal: 40.0),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10.0),
+              ),
+            ),
+            child: _isloading
+                ? const SizedBox(
+                    height: 20.0,
+                    width: 20.0,
+                    child: CircularProgressIndicator(
+                      valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                      strokeWidth: 2.0,
+                    ),
+                  )
+                : Text('Sign Up'),
+          ),
+          SizedBox(height: 16),
+          TextButton(
+            onPressed: widget.onToggle,
+            child: const Text('Already have an account? Login',
+            style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500)
+            ),
+            
+          ),
+        ],
+      ),
     );
   }
 }

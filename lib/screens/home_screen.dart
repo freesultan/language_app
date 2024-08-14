@@ -73,9 +73,14 @@ PreferredSizeWidget? _buildAppBar(BuildContext context) {
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text('Hello, ${userState.username}', 
-          style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
-
+          SizedBox(
+            width: 120,
+            child: Text(
+            'Hello, ${userState.username}', 
+            overflow: TextOverflow.ellipsis,
+            style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
+            
+            ),
           ),
           IconButton(
             icon: const Icon(Icons.logout),
