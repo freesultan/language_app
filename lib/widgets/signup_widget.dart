@@ -42,7 +42,7 @@ class _SignupWidgetState extends State<SignupWidget> {
       if (response.statusCode == 200) {
         var responseData = jsonDecode(response.body);
 
-        Provider.of<UserState>(context, listen: false).login(email, email);
+        Provider.of<UserState>(context, listen: false).setUser(email, email);
          print('User signed up and saved locally: $responseData');
 
         // Navigate to home screen
